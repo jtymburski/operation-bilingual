@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "Countries",
+      "items": [
+        { "english": "Canada", "yale": "Gānàhdaaih", "chinese": "加拿大" },
+        { "english": "United States", "yale": "Mēigwok", "chinese": "美國" }
+      ]
+    },
+    {
+      "name": "Intro Phrases",
+      "items": [
+        { "english": "Good morning", "yale": "Zóusān", "chinese": "早晨" },
+        { "english": "Thank you (for a gift)", "yale": "Dōjei", "chinese": "多謝" }
+      ]
+    }
+  ]
+}

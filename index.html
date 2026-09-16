@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yale Cantonese Quiz App</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #16a34a;
+      --error: #dc2626;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    nav button {
+      flex: 1;
+      padding: 10px;
+      background: none;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #64748b;
+      border-radius: 6px;
+    }
+
+    nav button.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .view { display: none; }
+    .view.active { display: flex; flex-direction: column; gap: 16px; }
+
+    label { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; display: block; }
+    input, select, button { font-size: 1rem; padding: 10px; border-radius: 6px; border: 1px solid var(--border); }
+    button { cursor: pointer; background: var(--primary); color: white; border: none; font-weight: 600; }
+    button:hover { background: var(--primary-hover); }
+
+    .group-select {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+
+    .chip input { cursor: pointer; }
+
+    .prompt-box {
+      text-align: center;
+      padding: 24px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .prompt-title { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+    .prompt-word { font-size: 2rem; font-weight: bold; margin-top: 8px; }
+
+    .accent-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .accent-btn {
+      padding: 6px 10px;
+      background: #e2e8f0;
+      color: var(--text);
+      font-size: 1.1rem;
+      border-radius: 4px;
+    }
+
+    .feedback {
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    .feedback.correct { background: #dcfce7; color: var(--success); display: block; }
+    .feedback.incorrect { background: #fee2e2; color: var(--error); display: block; }
+
+    .word-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .btn-danger { background: var(--error); }
+    .btn-danger:hover { background: #b91c1c; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <button id="tab-quiz" class="active" onclick="switchTab('quiz')">Quiz</button>
+    <button id="tab-manage" onclick="switchTab('manage')">Manage Vocabulary</button>
+    <button id="tab-settings" onclick="switchTab('settings')">Sync Settings</button>
+  </nav>
+
+  <!-- QUIZ VIEW -->
+  <div id="view-quiz" class="view active">
+    <div class="card">
+      <label>Active Groups:</label>
+      <div id="quiz-group-chips" class="group-select"></div>
+
+      <label for="quiz-mode">Quiz Direction:</label>
+      <select id="quiz-mode" style="width: 100%; margin-bottom: 16px;">
+        <option value="en-to-yale">English ➔ Yale Cantonese</option>
+        <option value="yale-to-en">Yale Cantonese ➔ English</option>
+        <option value="mixed">Mixed (Both Directions)</option>
+      </select>
+
+      <button id="start-btn" onclick="nextQuestion()">Start / Next Word</button>
+    </div>
+
+    <div class="card" id="quiz-card" style="display:none;">
+      <div class="prompt-box">
+        <div class="prompt-title" id="prompt-direction">Translate to Yale</div>
+        <div class="prompt-word" id="prompt-text">---</div>
+      </div>
+
+      <form onsubmit="handleAnswer(event)" style="display:flex; flex-direction:column; gap:8px;">
+        <label for="user-input">Your Answer (Strict Accents):</label>
+        <input type="text" id="user-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
+
+        <div class="accent-bar" id="accent-buttons">
+          <!-- Yale Tone Accents -->
+          <button type="button" class="accent-btn" onclick="insertAccent('ā')">ā</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('á')">á</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('à')">à</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ē')">ē</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('é')">é</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('è')">è</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ī')">ī</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('í')">í</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ì')">ì</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ō')">ō</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ó')">ó</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ò')">ò</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ū')">ū</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ú')">ú</button>
+          <button type="button" class="accent-btn" onclick="insertAccent('ù')">ù</button>
+        </div>
+
+        <button type="submit" style="margin-top:8px;">Check Answer</button>
+      </form>
+
+      <div id="feedback" class="feedback"></div>
+    </div>
+  </div>
+
+  <!-- MANAGE VIEW -->
+  <div id="view-manage" class="view">
+    <div class="card">
+      <h3>Add New Word / Phrase</h3>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <label for="new-group">Group Name:</label>
+        <input type="text" id="new-group" placeholder="e.g., Countries, Intro Phrases">
+
+        <label for="new-english">English Meaning:</label>
+        <input type="text" id="new-english" placeholder="e.g., Canada">
+
+        <label for="new-yale">Yale Romanization:</label>
+        <input type="text" id="new-yale" placeholder="e.g., Gānàhdaaih">
+
+        <label for="new-chinese">Chinese (Optional):</label>
+        <input type="text" id="new-chinese" placeholder="e.g., 加拿大">
+
+        <button onclick="addWord()">Save Word</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Current Vocabulary</h3>
+      <div id="vocabulary-tree"></div>
+    </div>
+  </div>
+
+  <!-- SETTINGS VIEW -->
+  <div id="view-settings" class="view">
+    <div class="card">
+      <h3>GitHub Sync Configuration</h3>
+      <p style="font-size:0.85rem; color:#64748b;">Connect your app directly to your GitHub repository where <code>words.json</code> is stored.</p>
+      
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <label for="gh-owner">GitHub Username / Org:</label>
+        <input type="text" id="gh-owner">
+
+        <label for="gh-repo">Repository Name:</label>
+        <input type="text" id="gh-repo">
+
+        <label for="gh-path">Path to JSON File:</label>
+        <input type="text" id="gh-path" value="words.json">
+
+        <label for="gh-token">Personal Access Token (PAT):</label>
+        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+
+        <button onclick="saveSettings()">Save Configuration</button>
+        <button onclick="fetchFromGitHub()" style="background:#059669;">Fetch Latest Data from GitHub</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let db = { groups: [] };
+  let currentItem = null;
+  let currentDirection = 'en-to-yale';
+
+  // Local Storage Initialization
+  function init() {
+    const localData = localStorage.getItem('cantonese_vocab');
+    if (localData) {
+      db = JSON.parse(localData);
+    } else {
+      // Default initial seed
+      db = {
+        groups: [
+          {
+            name: "Countries",
+            items: [
+              { english: "Canada", yale: "Gānàhdaaih", chinese: "加拿大" },
+              { english: "United States", yale: "Mēigwok", chinese: "美國" }
+            ]
+          }
+        ]
+      };
+      saveToLocal();
+    }
+
+    // Load GitHub Settings if available
+    document.getElementById('gh-owner').value = localStorage.getItem('gh_owner') || '';
+    document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || '';
+    document.getElementById('gh-path').value = localStorage.getItem('gh_path') || 'words.json';
+    document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
+
+    renderGroupChips();
+    renderVocabTree();
+  }
+
+  function saveToLocal() {
+    localStorage.setItem('cantonese_vocab', JSON.stringify(db));
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(`tab-${tab}`).classList.add('active');
+    document.getElementById(`view-${tab}`).classList.add('active');
+    if (tab === 'quiz') renderGroupChips();
+    if (tab === 'manage') renderVocabTree();
+  }
+
+  function insertAccent(char) {
+    const input = document.getElementById('user-input');
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+    const text = input.value;
+    input.value = text.substring(0, start) + char + text.substring(end);
+    input.focus();
+    input.selectionStart = input.selectionEnd = start + char.length;
+  }
+
+  function renderGroupChips() {
+    const container = document.getElementById('quiz-group-chips');
+    container.innerHTML = '';
+    db.groups.forEach((g, idx) => {
+      const label = document.createElement('label');
+      label.className = 'chip';
+      label.innerHTML = `<input type="checkbox" value="${g.name}" checked> ${g.name} (${g.items.length})`;
+      container.appendChild(label);
+    });
+  }
+
+  function getSelectedPool() {
+    const checkboxes = document.querySelectorAll('#quiz-group-chips input:checked');
+    const activeGroupNames = Array.from(checkboxes).map(cb => cb.value);
+    let pool = [];
+    db.groups.forEach(g => {
+      if (activeGroupNames.includes(g.name)) {
+        pool = pool.concat(g.items);
+      }
+    });
+    return pool;
+  }
+
+  function nextQuestion() {
+    const pool = getSelectedPool();
+    if (pool.length === 0) {
+      alert("Please select at least one group with words.");
+      return;
+    }
+
+    const feedback = document.getElementById('feedback');
+    feedback.className = 'feedback';
+    feedback.innerText = '';
+    document.getElementById('user-input').value = '';
+
+    document.getElementById('quiz-card').style.display = 'block';
+
+    currentItem = pool[Math.floor(Math.random() * pool.length)];
+    const mode = document.getElementById('quiz-mode').value;
+
+    if (mode === 'mixed') {
+      currentDirection = Math.random() > 0.5 ? 'en-to-yale' : 'yale-to-en';
+    } else {
+      currentDirection = mode;
+    }
+
+    if (currentDirection === 'en-to-yale') {
+      document.getElementById('prompt-direction').innerText = "Translate to Yale Cantonese";
+      document.getElementById('prompt-text').innerText = currentItem.english;
+      document.getElementById('accent-buttons').style.display = 'flex';
+    } else {
+      document.getElementById('prompt-direction').innerText = "Translate to English";
+      document.getElementById('prompt-text').innerText = `${currentItem.yale} ${currentItem.chinese ? '(' + currentItem.chinese + ')' : ''}`;
+      document.getElementById('accent-buttons').style.display = 'none';
+    }
+
+    document.getElementById('user-input').focus();
+  }
+
+  function handleAnswer(e) {
+    e.preventDefault();
+    if (!currentItem) return;
+
+    const userInput = document.getElementById('user-input').value.trim();
+    const feedback = document.getElementById('feedback');
+
+    let target = currentDirection === 'en-to-yale' ? currentItem.yale : currentItem.english;
+
+    // Strict evaluation
+    if (userInput === target) {
+      feedback.className = 'feedback correct';
+      feedback.innerText = '✓ Correct!';
+      setTimeout(nextQuestion, 1200);
+    } else {
+      feedback.className = 'feedback incorrect';
+      feedback.innerText = `✗ Incorrect. Target: "${target}"`;
+    }
+  }
+
+  function addWord() {
+    const groupName = document.getElementById('new-group').value.trim();
+    const english = document.getElementById('new-english').value.trim();
+    const yale = document.getElementById('new-yale').value.trim();
+    const chinese = document.getElementById('new-chinese').value.trim();
+
+    if (!groupName || !english || !yale) {
+      alert('Group Name, English, and Yale fields are required.');
+      return;
+    }
+
+    let group = db.groups.find(g => g.name.toLowerCase() === groupName.toLowerCase());
+    if (!group) {
+      group = { name: groupName, items: [] };
+      db.groups.push(group);
+    }
+
+    group.items.push({ english, yale, chinese });
+    saveToLocal();
+    syncToGitHub();
+
+    document.getElementById('new-english').value = '';
+    document.getElementById('new-yale').value = '';
+    document.getElementById('new-chinese').value = '';
+
+    renderVocabTree();
+    alert('Word added!');
+  }
+
+  function deleteWord(groupIndex, itemIndex) {
+    db.groups[groupIndex].items.splice(itemIndex, 1);
+    if (db.groups[groupIndex].items.length === 0) {
+      db.groups.splice(groupIndex, 1);
+    }
+    saveToLocal();
+    syncToGitHub();
+    renderVocabTree();
+  }
+
+  function renderVocabTree() {
+    const container = document.getElementById('vocabulary-tree');
+    container.innerHTML = '';
+    db.groups.forEach((g, gIdx) => {
+      const gEl = document.createElement('div');
+      gEl.innerHTML = `<h4>${g.name}</h4>`;
+      g.items.forEach((item, iIdx) => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'word-list-item';
+        itemEl.innerHTML = `
+          <div>
+            <strong>${item.english}</strong> — <code>${item.yale}</code> ${item.chinese ? '[' + item.chinese + ']' : ''}
+          </div>
+          <button class="btn-danger" style="padding:4px 8px; font-size:0.8rem;" onclick="deleteWord(${gIdx}, ${iIdx})">Delete</button>
+        `;
+        gEl.appendChild(itemEl);
+      });
+      container.appendChild(gEl);
+    });
+  }
+
+  // GITHUB API SYNC MECHANICS
+  function saveSettings() {
+    localStorage.setItem('gh_owner', document.getElementById('gh-owner').value.trim());
+    localStorage.setItem('gh_repo', document.getElementById('gh-repo').value.trim());
+    localStorage.setItem('gh_path', document.getElementById('gh-path').value.trim());
+    localStorage.setItem('gh_token', document.getElementById('gh-token').value.trim());
+    alert('Settings saved locally!');
+  }
+
+  async function fetchFromGitHub() {
+    const owner = localStorage.getItem('gh_owner');
+    const repo = localStorage.getItem('gh_repo');
+    const path = localStorage.getItem('gh_path');
+    const token = localStorage.getItem('gh_token');
+
+    if (!owner || !repo || !path) {
+      alert('Please fill in GitHub settings first.');
+      return;
+    }
+
+    const headers = token ? { 'Authorization': `token ${token}` } : {};
+    try {
+      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, { headers });
+      const data = await res.json();
+      const content = decodeURIComponent(escape(atob(data.content)));
+      db = JSON.parse(content);
+      saveToLocal();
+      renderGroupChips();
+      renderVocabTree();
+      alert('Successfully fetched latest words from GitHub!');
+    } catch (err) {
+      alert('Failed to fetch from GitHub: ' + err.message);
+    }
+  }
+
+  async function syncToGitHub() {
+    const owner = localStorage.getItem('gh_owner');
+    const repo = localStorage.getItem('gh_repo');
+    const path = localStorage.getItem('gh_path');
+    const token = localStorage.getItem('gh_token');
+
+    if (!owner || !repo || !path || !token) return; // Skip quiet sync if unconfigured
+
+    try {
+      // 1. Get SHA of existing file
+      const getFile = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        headers: { 'Authorization': `token ${token}` }
+      });
+      const fileData = await getFile.json();
+      const sha = fileData.sha;
+
+      // 2. Commit update
+      const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2))));
+      await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Update vocabulary via Yale Quiz Web App',
+          content: updatedContent,
+          sha: sha
+        })
+      });
+    } catch (err) {
+      console.error('GitHub Sync Error:', err);
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

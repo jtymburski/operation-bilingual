@@ -133,6 +133,15 @@
     .feedback.correct { background: #dcfce7; color: var(--success); display: block; }
     .feedback.incorrect { background: #fee2e2; color: var(--error); display: block; }
 
+    .status-banner {
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .status-banner.error { background: #fee2e2; color: var(--error); border: 1px solid var(--error); display: block; }
+
     .word-list-item {
       display: flex;
       justify-content: space-between;
@@ -148,6 +157,8 @@
 <body>
 
 <div class="container">
+  <div id="status-banner" class="status-banner"></div>
+
   <nav>
     <button id="tab-quiz" class="active" onclick="switchTab('quiz')">Quiz</button>
     <button id="tab-manage" onclick="switchTab('manage')">Manage Vocabulary</button>
@@ -236,15 +247,15 @@
   <!-- SETTINGS VIEW -->
   <div id="view-settings" class="view">
     <div class="card">
-      <h3>GitHub Sync Configuration</h3>
-      <p style="font-size:0.85rem; color:#64748b;">Connect your app directly to your GitHub repository where <code>words.json</code> is stored.</p>
+      <h3>GitHub Write Sync (Optional)</h3>
+      <p style="font-size:0.85rem; color:#64748b;">Add a Personal Access Token below if you want word additions in the web interface to commit directly back to GitHub.</p>
       
       <div style="display:flex; flex-direction:column; gap:8px;">
         <label for="gh-owner">GitHub Username / Org:</label>
-        <input type="text" id="gh-owner">
+        <input type="text" id="gh-owner" value="jtymburski">
 
         <label for="gh-repo">Repository Name:</label>
-        <input type="text" id="gh-repo">
+        <input type="text" id="gh-repo" value="operation-bilingual">
 
         <label for="gh-path">Path to JSON File:</label>
         <input type="text" id="gh-path" value="words.json">
@@ -253,7 +264,7 @@
         <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
 
         <button onclick="saveSettings()">Save Configuration</button>
-        <button onclick="fetchFromGitHub()" style="background:#059669;">Fetch Latest Data from GitHub</button>
+        <button onclick="init()" style="background:#059669;">Reload ./words.json</button>
       </div>
     </div>
   </div>
@@ -264,39 +275,46 @@
   let currentItem = null;
   let currentDirection = 'en-to-yale';
 
-  // Local Storage Initialization
-  function init() {
-    const localData = localStorage.getItem('cantonese_vocab');
-    if (localData) {
-      db = JSON.parse(localData);
-    } else {
-      // Default initial seed
-      db = {
-        groups: [
-          {
-            name: "Countries",
-            items: [
-              { english: "Canada", yale: "Gānàhdaaih", chinese: "加拿大" },
-              { english: "United States", yale: "Mēigwok", chinese: "美國" }
-            ]
-          }
-        ]
-      };
-      saveToLocal();
-    }
+  function showStatus(message) {
+    const banner = document.getElementById('status-banner');
+    banner.className = 'status-banner error';
+    banner.innerText = message;
+  }
 
-    // Load GitHub Settings if available
-    document.getElementById('gh-owner').value = localStorage.getItem('gh_owner') || '';
-    document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || '';
+  function clearStatus() {
+    const banner = document.getElementById('status-banner');
+    banner.className = 'status-banner';
+    banner.innerText = '';
+  }
+
+  async function init() {
+    // Populate GitHub Settings UI inputs
+    document.getElementById('gh-owner').value = localStorage.getItem('gh_owner') || 'jtymburski';
+    document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || 'operation-bilingual';
     document.getElementById('gh-path').value = localStorage.getItem('gh_path') || 'words.json';
     document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
 
-    renderGroupChips();
-    renderVocabTree();
-  }
+    try {
+      // Direct relative fetch of ./words.json with timestamp parameter to bypass CDN cache
+      const response = await fetch('./words.json?v=' + Date.now());
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: Unable to locate ./words.json`);
+      }
 
-  function saveToLocal() {
-    localStorage.setItem('cantonese_vocab', JSON.stringify(db));
+      db = await response.json();
+
+      if (!db.groups || !Array.isArray(db.groups)) {
+        throw new Error("Invalid format: Expected a top-level 'groups' array in ./words.json");
+      }
+
+      clearStatus();
+      renderGroupChips();
+      renderVocabTree();
+
+    } catch (err) {
+      showStatus(`CRITICAL ERROR: Failed to load ./words.json (${err.message})`);
+    }
   }
 
   function switchTab(tab) {
@@ -321,7 +339,11 @@
   function renderGroupChips() {
     const container = document.getElementById('quiz-group-chips');
     container.innerHTML = '';
-    db.groups.forEach((g, idx) => {
+    if (!db.groups || db.groups.length === 0) {
+      container.innerHTML = '<em>No groups available. Please check ./words.json.</em>';
+      return;
+    }
+    db.groups.forEach((g) => {
       const label = document.createElement('label');
       label.className = 'chip';
       label.innerHTML = `<input type="checkbox" value="${g.name}" checked> ${g.name} (${g.items.length})`;
@@ -386,7 +408,6 @@
 
     let target = currentDirection === 'en-to-yale' ? currentItem.yale : currentItem.english;
 
-    // Strict evaluation
     if (userInput === target) {
       feedback.className = 'feedback correct';
       feedback.innerText = '✓ Correct!';
@@ -415,7 +436,6 @@
     }
 
     group.items.push({ english, yale, chinese });
-    saveToLocal();
     syncToGitHub();
 
     document.getElementById('new-english').value = '';
@@ -431,7 +451,6 @@
     if (db.groups[groupIndex].items.length === 0) {
       db.groups.splice(groupIndex, 1);
     }
-    saveToLocal();
     syncToGitHub();
     renderVocabTree();
   }
@@ -439,6 +458,8 @@
   function renderVocabTree() {
     const container = document.getElementById('vocabulary-tree');
     container.innerHTML = '';
+    if (!db.groups) return;
+
     db.groups.forEach((g, gIdx) => {
       const gEl = document.createElement('div');
       gEl.innerHTML = `<h4>${g.name}</h4>`;
@@ -457,58 +478,29 @@
     });
   }
 
-  // GITHUB API SYNC MECHANICS
   function saveSettings() {
     localStorage.setItem('gh_owner', document.getElementById('gh-owner').value.trim());
     localStorage.setItem('gh_repo', document.getElementById('gh-repo').value.trim());
     localStorage.setItem('gh_path', document.getElementById('gh-path').value.trim());
     localStorage.setItem('gh_token', document.getElementById('gh-token').value.trim());
-    alert('Settings saved locally!');
-  }
-
-  async function fetchFromGitHub() {
-    const owner = localStorage.getItem('gh_owner');
-    const repo = localStorage.getItem('gh_repo');
-    const path = localStorage.getItem('gh_path');
-    const token = localStorage.getItem('gh_token');
-
-    if (!owner || !repo || !path) {
-      alert('Please fill in GitHub settings first.');
-      return;
-    }
-
-    const headers = token ? { 'Authorization': `token ${token}` } : {};
-    try {
-      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, { headers });
-      const data = await res.json();
-      const content = decodeURIComponent(escape(atob(data.content)));
-      db = JSON.parse(content);
-      saveToLocal();
-      renderGroupChips();
-      renderVocabTree();
-      alert('Successfully fetched latest words from GitHub!');
-    } catch (err) {
-      alert('Failed to fetch from GitHub: ' + err.message);
-    }
+    alert('Settings saved!');
   }
 
   async function syncToGitHub() {
-    const owner = localStorage.getItem('gh_owner');
-    const repo = localStorage.getItem('gh_repo');
-    const path = localStorage.getItem('gh_path');
+    const owner = localStorage.getItem('gh_owner') || 'jtymburski';
+    const repo = localStorage.getItem('gh_repo') || 'operation-bilingual';
+    const path = localStorage.getItem('gh_path') || 'words.json';
     const token = localStorage.getItem('gh_token');
 
-    if (!owner || !repo || !path || !token) return; // Skip quiet sync if unconfigured
+    if (!token) return; 
 
     try {
-      // 1. Get SHA of existing file
       const getFile = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
         headers: { 'Authorization': `token ${token}` }
       });
       const fileData = await getFile.json();
       const sha = fileData.sha;
 
-      // 2. Commit update
       const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2))));
       await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
         method: 'PUT',
@@ -523,7 +515,8 @@
         })
       });
     } catch (err) {
-      console.error('GitHub Sync Error:', err);
+      console.error('GitHub Commit Error:', err);
+      showStatus('Failed to sync changes back to GitHub.');
     }
   }
 

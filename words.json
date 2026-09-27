@@ -72,6 +72,12 @@
     {
       "name": "Languages",
       "items": [
+        { "english": "English", "yale": "Yīngmán" },
+        { "english": "French", "yale": "Faatmán" },
+        { "english": "German", "yale": "Dākmán" },
+        { "english": "Italian", "yale": "Yidaaihleihmán" },
+        { "english": "Japanese", "yale": "Yahtmán" },
+        { "english": "Korean", "yale": "Hòhnmán" },
         {
           "english": "Cantonese",
           "yale": "Gwóngdūngwá"

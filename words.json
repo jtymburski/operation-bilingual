@@ -3,15 +3,296 @@
     {
       "name": "Countries",
       "items": [
-        { "english": "Canada", "yale": "Gānàhdaaih", "chinese": "加拿大" },
-        { "english": "United States", "yale": "Méihgwok", "chinese": "美國" }
+        {
+          "english": "Britain, the UK",
+          "yale": "Yīnggwok"
+        },
+        {
+          "english": "United States",
+          "yale": "Méihgwok"
+        },
+        {
+          "english": "Canada",
+          "yale": "Gānàhdaaih"
+        },
+        {
+          "english": "Australia",
+          "yale": "Oujāu"
+        },
+        {
+          "english": "New Zealand",
+          "yale": "Náusāilàahn"
+        },
+        {
+          "english": "France",
+          "yale": "Faatgwok"
+        },
+        {
+          "english": "Germany",
+          "yale": "Dākgwok"
+        },
+        {
+          "english": "Italy",
+          "yale": "Yidaaihleih"
+        },
+        {
+          "english": "Spain",
+          "yale": "Sāibāanngàh"
+        },
+        {
+          "english": "the Philippines",
+          "yale": "Fēileuhtbān"
+        },
+        {
+          "english": "Japan",
+          "yale": "Yahtbún"
+        },
+        {
+          "english": "Korea",
+          "yale": "Hòhngwok"
+        },
+        {
+          "english": "India",
+          "yale": "Yandouh"
+        },
+        {
+          "english": "Pakistan",
+          "yale": "Bāgēisītāan"
+        },
+        {
+          "english": "Hong Kong",
+          "yale": "Heūnggóng"
+        },
+        {
+          "english": "China",
+          "yale": "Jūnggwok"
+        }
+      ]
+    },
+    {
+      "name": "Languages",
+      "items": [
+        {
+          "english": "Cantonese",
+          "yale": "Gwóngdūngwá"
+        },
+        {
+          "english": "Standard Mandarin",
+          "yale": "Póutūngwá"
+        }
       ]
     },
     {
       "name": "Intro Phrases",
       "items": [
-        { "english": "Good morning", "yale": "Zóusān", "chinese": "早晨" },
-        { "english": "Thank you (for a gift)", "yale": "Dōjei", "chinese": "多謝" }
+        {
+          "english": "Good morning",
+          "yale": "Zóusàn",
+          "chinese": "早晨"
+        },
+        {
+          "english": "Thank you (for a gift)",
+          "yale": "Dōjei",
+          "chinese": "多謝"
+        },
+        {
+          "english": "How are you?",
+          "yale": "Néih hóu"
+        },
+        {
+          "english": "I am",
+          "yale": "Ngóh haih"
+        },
+        {
+          "english": "Where are you from",
+          "yale": "Néih haih bīndouh yàhn a"
+        },
+        {
+          "english": "My name is",
+          "yale": "Ngóh giujouh"
+        },
+        {
+          "english": "What is your name",
+          "yale": "Néih giu mátyéh méng a"
+        },
+        {
+          "english": "So, what about you?",
+          "yale": "Gám néih nē"
+        },
+        {
+          "english": "Are you British",
+          "yale": "Néih haih-mh-haih Yīnggwok yàhn a"
+        },
+        {
+          "english": "No, I’m not",
+          "yale": "Mhaih"
+        },
+        {
+          "english": "I can speak",
+          "yale": "Ngóh sīk góng"
+        },
+        {
+          "english": "English and German",
+          "yale": "Yīngmán tùhng Dākmán"
+        },
+        {
+          "english": "a little French",
+          "yale": "síusíu Faatmán"
+        },
+        {
+          "english": "Let me introduce you",
+          "yale": "Dáng ngóh lèih gaaisiuh"
+        },
+        {
+          "english": "This is Grace",
+          "yale": "Nī go haih Grace"
+        },
+        {
+          "english": "but",
+          "yale": "bātgwo"
+        },
+        {
+          "english": "Grace, may I know what your surname is?",
+          "yale": "chéhng mahn Grace néih gwai sing a?"
+        }
+      ]
+    },
+    {
+      "name": "Fruits and Vegetables",
+      "items": [
+        {
+          "english": "fruit",
+          "yale": "sāanggwó"
+        },
+        {
+          "english": "mango",
+          "yale": "mōnggwó"
+        },
+        {
+          "english": "orange",
+          "yale": "cháang"
+        },
+        {
+          "english": "apple",
+          "yale": "pìhnggwó"
+        },
+        {
+          "english": "banana",
+          "yale": "hēungjīu"
+        },
+        {
+          "english": "grape",
+          "yale": "tàihjí"
+        },
+        {
+          "english": "plum",
+          "yale": "boulām"
+        },
+        {
+          "english": "pear",
+          "yale": "léi"
+        },
+        {
+          "english": "water-melon",
+          "yale": "sāigwā"
+        },
+        {
+          "english": "papaya",
+          "yale": "muhkgwā"
+        },
+        {
+          "english": "pineapple",
+          "yale": "bōlòh"
+        },
+        {
+          "english": "lychee",
+          "yale": "laihjī"
+        },
+        {
+          "english": "kiwifruit",
+          "yale": "kèihyihgwó"
+        }
+      ]
+    },
+    {
+      "name": "Numbers",
+      "items": [
+        {
+          "english": "1",
+          "yale": "yāt"
+        },
+        {
+          "english": "2",
+          "yale": "yih"
+        },
+        {
+          "english": "3",
+          "yale": "sāam"
+        },
+        {
+          "english": "4",
+          "yale": "sei"
+        },
+        {
+          "english": "5",
+          "yale": "ńgh"
+        },
+        {
+          "english": "6",
+          "yale": "luhk"
+        },
+        {
+          "english": "7",
+          "yale": "chāt"
+        },
+        {
+          "english": "8",
+          "yale": "baat"
+        },
+        {
+          "english": "9",
+          "yale": "gáu"
+        },
+        {
+          "english": "10",
+          "yale": "sahp"
+        },
+        {
+          "english": "20",
+          "yale": "yih-sahp"
+        },
+        {
+          "english": "30",
+          "yale": "sāam-sahp"
+        },
+        {
+          "english": "40",
+          "yale": "sei-sahp"
+        },
+        {
+          "english": "50",
+          "yale": "ńgh-sahp"
+        },
+        {
+          "english": "60",
+          "yale": "luhk-sahp"
+        },
+        {
+          "english": "70",
+          "yale": "chāt-sahp"
+        },
+        {
+          "english": "80",
+          "yale": "baat-sahp"
+        },
+        {
+          "english": "90",
+          "yale": "gáu-sahp"
+        },
+        {
+          "english": "100",
+          "yale": "yāt-baak"
+        }
       ]
     }
   ]

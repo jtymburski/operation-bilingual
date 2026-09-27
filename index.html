@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yale Cantonese Quiz App</title>
+  <title>Learn Cantonese</title>
   <style>
     :root {
       --bg: #f8fafc;
@@ -298,6 +298,7 @@
   <nav>
     <button id="tab-quiz" class="active" onclick="switchTab('quiz')">Quiz</button>
     <button id="tab-manage" onclick="switchTab('manage')">Manage Vocabulary</button>
+    <button id="tab-snapshot" onclick="switchTab('snapshot')">Snapshot</button>
   </nav>
 
   <!-- QUIZ VIEW -->
@@ -361,6 +362,7 @@
         </div>
 
         <button type="submit" style="margin-top:8px;" onpointerdown="document.getElementById('user-input').focus({preventScroll:true});">Check Answer</button>
+        <button type="button" id="finish-quiz-btn" class="btn-danger" style="display:none; margin-top:4px;" onclick="finishRound()">Finish Quiz</button>
       </form>
 
       <div id="feedback" class="feedback"></div>
@@ -393,7 +395,18 @@
   <div id="view-manage" class="view">
     <div class="card">
       <h3>Current Vocabulary</h3>
+      <label for="vocab-group-select">Vocabulary Section:</label>
+      <select id="vocab-group-select" onchange="renderVocabTree(this.value)" style="width:100%; margin-bottom:16px;"></select>
       <div id="vocabulary-tree"></div>
+    </div>
+  </div>
+
+  <!-- SNAPSHOT VIEW -->
+  <div id="view-snapshot" class="view">
+    <div class="card">
+      <h3>Offline Snapshot</h3>
+      <p style="line-height:1.5; margin-top:0;">Download a standalone copy of this quiz with the current vocabulary embedded inside it. The downloaded HTML works without <code>words.json</code> or an internet connection.</p>
+      <button type="button" onclick="downloadSnapshot()">Download Snapshot</button>
     </div>
   </div>
 </div>
@@ -422,14 +435,18 @@
 
   async function init() {
     try {
-      // Direct relative fetch of ./words.json with timestamp parameter to bypass CDN cache
-      const response = await fetch('./words.json?v=' + Date.now());
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: Unable to locate ./words.json`);
-      }
+      if (window.__EMBEDDED_DB__) {
+        db = window.__EMBEDDED_DB__;
+      } else {
+        // Direct relative fetch of ./words.json with timestamp parameter to bypass CDN cache
+        const response = await fetch('./words.json?v=' + Date.now());
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: Unable to locate ./words.json`);
+        }
 
-      db = await response.json();
+        db = await response.json();
+      }
 
       if (!db.groups || !Array.isArray(db.groups)) {
         throw new Error("Invalid format: Expected a top-level 'groups' array in ./words.json");
@@ -553,13 +570,16 @@
 
   function updateRoundProgress() {
     const progress = document.getElementById('round-progress');
+    const finishButton = document.getElementById('finish-quiz-btn');
     if (executionMode === 'round' && quizPool.length > 0) {
       const completed = roundResults.length;
       progress.innerText = `${completed + 1}/${quizPool.length}`;
       progress.classList.add('active');
+      finishButton.style.display = 'block';
     } else {
       progress.classList.remove('active');
       progress.innerText = '';
+      finishButton.style.display = 'none';
     }
   }
 
@@ -569,6 +589,7 @@
     feedback.innerText = '';
     document.getElementById('user-input').value = '';
     document.getElementById('score-card').style.display = 'none';
+    document.getElementById('finish-quiz-btn').style.display = 'none';
   }
 
   function startQuiz() {
@@ -649,6 +670,16 @@
     document.getElementById('user-input').focus();
   }
 
+  function finishRound() {
+    if (executionMode !== 'round') return;
+
+    // Only submitted answers are included. The current unanswered question and
+    // everything remaining in the queue are intentionally ignored.
+    roundQueue = [];
+    currentItem = null;
+    showScoreCard();
+  }
+
   function handleAnswer(e) {
     e.preventDefault();
     if (!currentItem) return;
@@ -692,7 +723,9 @@
 
   function showScoreCard() {
     currentItem = null;
+    roundQueue = [];
     document.getElementById('quiz-card').style.display = 'none';
+    document.getElementById('finish-quiz-btn').style.display = 'none';
 
     const total = roundResults.length;
     const correct = roundResults.filter(result => result.correct).length;
@@ -735,39 +768,96 @@
       .replace(/'/g, '&#039;');
   }
 
-  function renderVocabTree() {
+  function renderVocabTree(selectedName) {
+    const select = document.getElementById('vocab-group-select');
     const container = document.getElementById('vocabulary-tree');
-    container.innerHTML = '';
-    if (!db.groups) return;
+    if (!select || !container) return;
 
-    db.groups.forEach((g, gIdx) => {
-      const gEl = document.createElement('div');
-      gEl.innerHTML = `<h4>${g.name}</h4>`;
-      g.items.forEach((item, iIdx) => {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'word-list-item';
-        itemEl.innerHTML = `
-          <div class="vocab-word">${escapeHtml(item.english)}</div>
-          <div class="vocab-forms">
-            <div class="vocab-form">
-              <span class="vocab-form-label">Yale</span>
-              <span class="vocab-form-value">${escapeHtml(item.yale)}</span>
-            </div>
-            <div class="vocab-form">
-              <span class="vocab-form-label">Jyutping</span>
-              <span class="vocab-form-value">${escapeHtml(item.jyutping || '—')}</span>
-            </div>
-            ${item.chinese ? `
-            <div class="vocab-form">
-              <span class="vocab-form-label">Chinese</span>
-              <span class="vocab-form-value">${escapeHtml(item.chinese)}</span>
-            </div>` : ''}
-          </div>
-        `;
-        gEl.appendChild(itemEl);
-      });
-      container.appendChild(gEl);
+    container.innerHTML = '';
+    select.innerHTML = '';
+    if (!db.groups || db.groups.length === 0) return;
+
+    const names = db.groups.map(g => g.name);
+    const activeName = names.includes(selectedName) ? selectedName : names[0];
+
+    db.groups.forEach(g => {
+      const option = document.createElement('option');
+      option.value = g.name;
+      option.textContent = `${g.name} (${g.items.length})`;
+      option.selected = g.name === activeName;
+      select.appendChild(option);
     });
+
+    const group = db.groups.find(g => g.name === activeName);
+    if (!group) return;
+
+    const gEl = document.createElement('div');
+    const heading = document.createElement('h4');
+    heading.textContent = group.name;
+    gEl.appendChild(heading);
+
+    group.items.forEach(item => {
+      const itemEl = document.createElement('div');
+      itemEl.className = 'word-list-item';
+      itemEl.innerHTML = `
+        <div class="vocab-word">${escapeHtml(item.english)}</div>
+        <div class="vocab-forms">
+          <div class="vocab-form">
+            <span class="vocab-form-label">Yale</span>
+            <span class="vocab-form-value">${escapeHtml(item.yale)}</span>
+          </div>
+          <div class="vocab-form">
+            <span class="vocab-form-label">Jyutping</span>
+            <span class="vocab-form-value">${escapeHtml(item.jyutping || '—')}</span>
+          </div>
+          ${item.chinese ? `
+          <div class="vocab-form">
+            <span class="vocab-form-label">Chinese</span>
+            <span class="vocab-form-value">${escapeHtml(item.chinese)}</span>
+          </div>` : ''}
+        </div>
+      `;
+      gEl.appendChild(itemEl);
+    });
+
+    container.appendChild(gEl);
+  }
+
+  function downloadSnapshot() {
+    if (!db.groups || db.groups.length === 0) {
+      alert('Vocabulary is not loaded yet. Please wait a moment and try again.');
+      return;
+    }
+
+    const clone = document.documentElement.cloneNode(true);
+
+    // Make the snapshot open on the Quiz tab with no stale quiz state.
+    clone.querySelectorAll('nav button').forEach(button => button.classList.remove('active'));
+    clone.querySelector('#tab-quiz')?.classList.add('active');
+    clone.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+    clone.querySelector('#view-quiz')?.classList.add('active');
+    clone.querySelector('#quiz-card')?.style.setProperty('display', 'none');
+    clone.querySelector('#score-card')?.style.setProperty('display', 'none');
+    clone.querySelector('#finish-quiz-btn')?.style.setProperty('display', 'none');
+    clone.querySelector('#status-banner')?.classList.remove('error');
+    clone.querySelector('#status-banner').textContent = '';
+
+    const embeddedData = JSON.stringify(db).replace(/</g, '\\u003c');
+    const dataScript = document.createElement('script');
+    dataScript.textContent = `window.__EMBEDDED_DB__ = ${embeddedData};`;
+    clone.querySelector('head').appendChild(dataScript);
+
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
+    link.href = url;
+    link.download = `yale-cantonese-quiz-snapshot-${date}.html`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   init();

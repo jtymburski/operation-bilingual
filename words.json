@@ -5,86 +5,128 @@
       "items": [
         {
           "english": "Britain, the UK",
-          "yale": "Yīnggwok"
+          "yale": "Yīnggwok",
+          "jyutping": "jing1gwok3"
         },
         {
           "english": "United States",
-          "yale": "Méihgwok"
+          "yale": "Méihgwok",
+          "jyutping": "mei5gwok3"
         },
         {
           "english": "Canada",
-          "yale": "Gānàhdaaih"
+          "yale": "Gānàhdaaih",
+          "jyutping": "gaa1naa4daai6"
         },
         {
           "english": "Australia",
-          "yale": "Oujāu"
+          "yale": "Oujāu",
+          "jyutping": "ou3zau1"
         },
         {
           "english": "New Zealand",
-          "yale": "Náusāilàahn"
+          "yale": "Náusāilàahn",
+          "jyutping": "naau2sai1laan4"
         },
         {
           "english": "France",
-          "yale": "Faatgwok"
+          "yale": "Faatgwok",
+          "jyutping": "faat3gwok3"
         },
         {
           "english": "Germany",
-          "yale": "Dākgwok"
+          "yale": "Dākgwok",
+          "jyutping": "dak1gwok3"
         },
         {
           "english": "Italy",
-          "yale": "Yidaaihleih"
+          "yale": "Yidaaihleih",
+          "jyutping": "ji3daai6lei6"
         },
         {
           "english": "Spain",
-          "yale": "Sāibāanngàh"
+          "yale": "Sāibāanngàh",
+          "jyutping": "sai1baan1ngaa4"
         },
         {
           "english": "the Philippines",
-          "yale": "Fēileuhtbān"
+          "yale": "Fēileuhtbān",
+          "jyutping": "fei1leot6ban1"
         },
         {
           "english": "Japan",
-          "yale": "Yahtbún"
+          "yale": "Yahtbún",
+          "jyutping": "jat6bun2"
         },
         {
           "english": "Korea",
-          "yale": "Hòhngwok"
+          "yale": "Hòhngwok",
+          "jyutping": "hon4gwok3"
         },
         {
           "english": "India",
-          "yale": "Yandouh"
+          "yale": "Yandouh",
+          "jyutping": "jan3dou6"
         },
         {
           "english": "Pakistan",
-          "yale": "Bāgēisītāan"
+          "yale": "Bāgēisītáan",
+          "jyutping": "baa1gei1si1taan2"
         },
         {
           "english": "Hong Kong",
-          "yale": "Heūnggóng"
+          "yale": "Heūnggóng",
+          "jyutping": "hoeng1gong2"
         },
         {
           "english": "China",
-          "yale": "Jūnggwok"
+          "yale": "Jūnggwok",
+          "jyutping": "zung1gwok3"
         }
       ]
     },
     {
       "name": "Languages",
       "items": [
-        { "english": "English", "yale": "Yīngmán" },
-        { "english": "French", "yale": "Faatmán" },
-        { "english": "German", "yale": "Dākmán" },
-        { "english": "Italian", "yale": "Yidaaihleihmán" },
-        { "english": "Japanese", "yale": "Yahtmán" },
-        { "english": "Korean", "yale": "Hòhnmán" },
+        { 
+          "english": "English", 
+          "yale": "Yīngmán", 
+          "jyutping": "jing1man4" 
+        },
+        { 
+          "english": "French", 
+          "yale": "Faatmán", 
+          "jyutping": "faat3man4" 
+        },
+        { 
+          "english": "German", 
+          "yale": "Dākmán", 
+          "jyutping": "dak1man4" 
+        },
+        { 
+          "english": "Italian", 
+          "yale": "Yidaaihleihmán", 
+          "jyutping": "ji3daai6lei6man4" 
+        },
+        { 
+          "english": "Japanese", 
+          "yale": "Yahtmán", 
+          "jyutping": "jat6man4" 
+        },
+        { 
+          "english": "Korean", 
+          "yale": "Hòhnmán", 
+          "jyutping": "hon4man4" 
+        },
         {
           "english": "Cantonese",
-          "yale": "Gwóngdūngwá"
+          "yale": "Gwóngdūngwá",
+          "jyutping": "gwong2dung1waa2"
         },
         {
           "english": "Standard Mandarin",
-          "yale": "Póutūngwá"
+          "yale": "Póutūngwá",
+          "jyutping": "pou2tung1waa2"
         }
       ]
     },
@@ -94,129 +136,159 @@
         {
           "english": "Good morning",
           "yale": "Zóusàn",
+          "jyutping": "zou2 san4",
           "chinese": "早晨"
         },
         {
           "english": "Thank you (for a gift)",
           "yale": "Dōjei",
+          "jyutping": "do1ze6",
           "chinese": "多謝"
         },
         {
           "english": "How are you?",
-          "yale": "Néih hóu"
+          "yale": "Néih hóu",
+          "jyutping": "nei5 hou2"
         },
         {
           "english": "I am",
-          "yale": "Ngóh haih"
+          "yale": "Ngóh haih",
+          "jyutping": "ngo5 hai6"
         },
         {
           "english": "Where are you from",
-          "yale": "Néih haih bīndouh yàhn a"
+          "yale": "Néih haih bīndouh yàhn a",
+          "jyutping": "nei5 hai6 bin1 dou6 jan4 aa3"
         },
         {
           "english": "My name is",
-          "yale": "Ngóh giujouh"
+          "yale": "Ngóh giujouh",
+          "jyutping": "ngo5 giu3 zou6"
         },
         {
           "english": "What is your name",
-          "yale": "Néih giu mátyéh méng a"
+          "yale": "Néih giu mátyéh méng a",
+          "jyutping": "nei5 giu3 mat1 je5 meng2 aa2"
         },
         {
           "english": "So, what about you?",
-          "yale": "Gám néih nē"
+          "yale": "Gám néih nē",
+          "jyutping": "gam2 nei5 ne1"
         },
         {
           "english": "Are you British",
-          "yale": "Néih haih-mh-haih Yīnggwok yàhn a"
+          "yale": "Néih haih-mh-haih Yīnggwok yàhn a",
+          "jyutping": "nei5 hai6 m4 hai6 jing1 gwok3 jan4 aa3"
         },
         {
           "english": "No, I’m not",
-          "yale": "Mhaih"
+          "yale": "Mhaih",
+          "jyutping": "m4 hai6"
         },
         {
           "english": "I can speak",
-          "yale": "Ngóh sīk góng"
+          "yale": "Ngóh sīk góng",
+          "jyutping": "ngo5 sik1 gong2"
         },
         {
           "english": "English and German",
-          "yale": "Yīngmán tùhng Dākmán"
+          "yale": "Yīngmán tùhng Dākmán",
+          "jyutping": "jing1 man4 tung4 dak1 man4"
         },
         {
           "english": "a little French",
-          "yale": "síusíu Faatmán"
+          "yale": "síusíu Faatmán",
+          "jyutping": "siu2 siu2 faat3 man4"
         },
         {
           "english": "Let me introduce you",
-          "yale": "Dáng ngóh lèih gaaisiuh"
+          "yale": "Dáng ngóh lèih gaaisiuh",
+          "jyutping": "dang2 ngo5 lei4 gaai3 siu6"
         },
         {
           "english": "This is Grace",
-          "yale": "Nī go haih Grace"
+          "yale": "Nī go haih Grace",
+          "jyutping": "ni1 go3 hai6 Grace"
         },
         {
           "english": "but",
-          "yale": "bātgwo"
+          "yale": "bātgwo",
+          "jyutping": "bat1 gwo3"
         },
         {
           "english": "Grace, may I know what your surname is?",
-          "yale": "chéhng mahn Grace néih gwai sing a?"
+          "yale": "chéhng mahn Grace néih gwai sing a?",
+          "jyutping": "cing2 man6 Grace nei5 gwai3 sing3 aa3?"
         }
       ]
     },
     {
-      "name": "Fruits and Vegetables",
+      "name": "Fruits (CC)",
       "items": [
         {
           "english": "fruit",
-          "yale": "sāanggwó"
+          "yale": "sāanggwó",
+          "jyutping": "saang1gwo2"
         },
         {
           "english": "mango",
-          "yale": "mōnggwó"
+          "yale": "mōnggwó",
+          "jyutping": "mong1gwo2"
         },
         {
           "english": "orange",
-          "yale": "cháang"
+          "yale": "cháang",
+          "jyutping": "caang2"
         },
         {
           "english": "apple",
-          "yale": "pìhnggwó"
+          "yale": "pìhnggwó",
+          "jyutping": "ping4gwo2"
         },
         {
           "english": "banana",
-          "yale": "hēungjīu"
+          "yale": "hēungjīu",
+          "jyutping": "hoeng1ziu1"
         },
         {
           "english": "grape",
-          "yale": "tàihjí"
+          "yale": "tàihjí",
+          "jyutping": "tai4zi2"
         },
         {
           "english": "plum",
-          "yale": "boulām"
+          "yale": "boulām",
+          "jyutping": "bou1lam1"
         },
         {
           "english": "pear",
-          "yale": "léi"
+          "yale": "léi",
+          "jyutping": "lei2"
         },
         {
           "english": "water-melon",
-          "yale": "sāigwā"
+          "yale": "sāigwā",
+          "jyutping": "sai1gwaa1"
         },
         {
           "english": "papaya",
-          "yale": "muhkgwā"
+          "yale": "muhkgwā",
+          "jyutping": "muk6gwaa1"
         },
         {
           "english": "pineapple",
-          "yale": "bōlòh"
+          "yale": "bōlòh",
+          "jyutping": "bo1lo4"
         },
         {
           "english": "lychee",
-          "yale": "laihjī"
+          "yale": "laihjī",
+          "jyutping": "lai6zi1"
         },
         {
           "english": "kiwifruit",
-          "yale": "kèihyihgwó"
+          "yale": "kèihyihgwó",
+          "jyutping": "kei4ji6gwo2"
         }
       ]
     },
@@ -225,79 +297,98 @@
       "items": [
         {
           "english": "1",
-          "yale": "yāt"
+          "yale": "yāt",
+          "jyutping": "jat1"
         },
         {
           "english": "2",
-          "yale": "yih"
+          "yale": "yih",
+          "jyutping": "ji6"
         },
         {
           "english": "3",
-          "yale": "sāam"
+          "yale": "sāam",
+          "jyutping": "saam1"
         },
         {
           "english": "4",
-          "yale": "sei"
+          "yale": "sei",
+          "jyutping": "sei3"
         },
         {
           "english": "5",
-          "yale": "ńgh"
+          "yale": "ńgh",
+          "jyutping": "ng5"
         },
         {
           "english": "6",
-          "yale": "luhk"
+          "yale": "luhk",
+          "jyutping": "luk6"
         },
         {
           "english": "7",
-          "yale": "chāt"
+          "yale": "chāt",
+          "jyutping": "cat1"
         },
         {
           "english": "8",
-          "yale": "baat"
+          "yale": "baat",
+          "jyutping": "baat3"
         },
         {
           "english": "9",
-          "yale": "gáu"
+          "yale": "gáu",
+          "jyutping": "gau2"
         },
         {
           "english": "10",
-          "yale": "sahp"
+          "yale": "sahp",
+          "jyutping": "sap6"
         },
         {
           "english": "20",
-          "yale": "yih-sahp"
+          "yale": "yih-sahp",
+          "jyutping": "ji6sap6"
         },
         {
           "english": "30",
-          "yale": "sāam-sahp"
+          "yale": "sāam-sahp",
+          "jyutping": "saam1sap6"
         },
         {
           "english": "40",
-          "yale": "sei-sahp"
+          "yale": "sei-sahp",
+          "jyutping": "sei3sap6"
         },
         {
           "english": "50",
-          "yale": "ńgh-sahp"
+          "yale": "ńgh-sahp",
+          "jyutping": "ng5sap6"
         },
         {
           "english": "60",
-          "yale": "luhk-sahp"
+          "yale": "luhk-sahp",
+          "jyutping": "luk6sap6"
         },
         {
           "english": "70",
-          "yale": "chāt-sahp"
+          "yale": "chāt-sahp",
+          "jyutping": "cat1sap6"
         },
         {
           "english": "80",
-          "yale": "baat-sahp"
+          "yale": "baat-sahp",
+          "jyutping": "baat3sap6"
         },
         {
           "english": "90",
-          "yale": "gáu-sahp"
+          "yale": "gáu-sahp",
+          "jyutping": "gau2sap6"
         },
         {
           "english": "100",
-          "yale": "yāt-baak"
+          "yale": "yāt-baak",
+          "jyutping": "jat1baak3"
         }
       ]
     }

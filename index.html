@@ -243,12 +243,6 @@
   }
 
   async function init() {
-    // Populate GitHub Settings UI inputs
-    document.getElementById('gh-owner').value = localStorage.getItem('gh_owner') || 'jtymburski';
-    document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || 'operation-bilingual';
-    document.getElementById('gh-path').value = localStorage.getItem('gh_path') || 'words.json';
-    document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
-
     try {
       // Direct relative fetch of ./words.json with timestamp parameter to bypass CDN cache
       const response = await fetch('./words.json?v=' + Date.now());

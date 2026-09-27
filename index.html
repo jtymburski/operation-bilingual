@@ -154,6 +154,8 @@
     .accent-btn {
       width: 48px;
       height: 48px;
+      flex: 0 1 48px;
+      min-width: 0;
       padding: 0;
       display: inline-flex;
       align-items: center;
@@ -163,6 +165,18 @@
       font-size: 1.3rem;
       border-radius: 6px;
       touch-action: manipulation;
+    }
+
+    @media (max-width: 480px) {
+      .accent-row {
+        width: 100%;
+        gap: 8px;
+      }
+
+      .accent-btn {
+        width: 0;
+        flex: 1 1 0;
+      }
     }
 
     .feedback {

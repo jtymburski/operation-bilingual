@@ -118,25 +118,31 @@
     .round-progress.active { display: block; }
 
     .accent-bar {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 8px;
-      justify-content: center;
+      align-items: center;
       margin-top: 4px;
     }
 
+    .accent-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
     .accent-btn {
-      min-height: 48px;
-      padding: 9px 12px;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: #e2e8f0;
       color: var(--text);
       font-size: 1.3rem;
       border-radius: 6px;
       touch-action: manipulation;
-    }
-
-    @media (min-width: 500px) {
-      .accent-bar { max-width: 420px; margin-left: auto; margin-right: auto; }
     }
 
     .feedback {
@@ -272,22 +278,26 @@
         <input type="text" id="user-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
 
         <div class="accent-bar" id="accent-buttons">
-          <!-- Yale Tone Accents -->
-          <button type="button" class="accent-btn" onclick="insertAccent('ā')">ā</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('á')">á</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('à')">à</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ē')">ē</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('é')">é</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('è')">è</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ī')">ī</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('í')">í</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ì')">ì</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ō')">ō</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ó')">ó</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ò')">ò</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ū')">ū</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ú')">ú</button>
-          <button type="button" class="accent-btn" onclick="insertAccent('ù')">ù</button>
+          <!-- Yale Tone Accents: A/E/I on row 1, O/U on row 2 -->
+          <div class="accent-row">
+            <button type="button" class="accent-btn" onclick="insertAccent('ā')">ā</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('á')">á</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('à')">à</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ē')">ē</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('é')">é</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('è')">è</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ī')">ī</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('í')">í</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ì')">ì</button>
+          </div>
+          <div class="accent-row">
+            <button type="button" class="accent-btn" onclick="insertAccent('ō')">ō</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ó')">ó</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ò')">ò</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ū')">ū</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ú')">ú</button>
+            <button type="button" class="accent-btn" onclick="insertAccent('ù')">ù</button>
+          </div>
         </div>
 
         <button type="submit" style="margin-top:8px;" onpointerdown="document.getElementById('user-input').focus({preventScroll:true});">Check Answer</button>

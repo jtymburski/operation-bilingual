@@ -150,6 +150,63 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .score-card {
+      display: none;
+    }
+
+    .score-summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .score-summary .score-number {
+      font-size: 1.25rem;
+    }
+
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .score-table th,
+    .score-table td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .score-table th {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+    }
+
+    .score-table .result-correct {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .score-table .result-incorrect {
+      color: var(--error);
+      font-weight: 700;
+    }
+
+    .score-table .answer-cell {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
     .btn-danger { background: var(--error); }
     .btn-danger:hover { background: #b91c1c; }
   </style>
@@ -177,7 +234,13 @@
         <option value="mixed">Mixed (Both Directions)</option>
       </select>
 
-      <button id="start-btn" onclick="nextQuestion()">Start / Next Word</button>
+      <label for="execution-mode">Execution Mode:</label>
+      <select id="execution-mode" style="width: 100%; margin-bottom: 16px;">
+        <option value="repeat">Random Repeat — immediate feedback</option>
+        <option value="round">Full Round — each word once, score at end</option>
+      </select>
+
+      <button id="start-btn" onclick="startQuiz()">Start / Next Word</button>
     </div>
 
     <div class="card" id="quiz-card" style="display:none;">
@@ -214,6 +277,28 @@
 
       <div id="feedback" class="feedback"></div>
     </div>
+
+    <div class="card score-card" id="score-card">
+      <h3>Quiz Results</h3>
+      <div class="score-summary">
+        <span id="score-number" class="score-number">0 / 0 correct</span>
+        <span id="score-percent">0%</span>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Direction</th>
+              <th>Your Answer</th>
+              <th>Correct Answer</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="score-table-body"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <!-- MANAGE VIEW -->
@@ -229,6 +314,10 @@
   let db = { groups: [] };
   let currentItem = null;
   let currentDirection = 'en-to-yale';
+  let executionMode = 'repeat';
+  let roundQueue = [];
+  let roundResults = [];
+  let quizPool = [];
 
   function showStatus(message) {
     const banner = document.getElementById('status-banner');
@@ -312,28 +401,81 @@
     return pool;
   }
 
+  function normalizeAnswer(value) {
+    return String(value ?? '').trim().toLocaleLowerCase();
+  }
+
+  function getDirectionLabel(direction) {
+    return direction === 'en-to-yale' ? 'English ➔ Yale' : 'Yale ➔ English';
+  }
+
+  function chooseDirection() {
+    const mode = document.getElementById('quiz-mode').value;
+    if (mode === 'mixed') {
+      return Math.random() > 0.5 ? 'en-to-yale' : 'yale-to-en';
+    }
+    return mode;
+  }
+
+  function getTarget(item, direction) {
+    return direction === 'en-to-yale' ? item.yale : item.english;
+  }
+
+  function resetQuizDisplay() {
+    const feedback = document.getElementById('feedback');
+    feedback.className = 'feedback';
+    feedback.innerText = '';
+    document.getElementById('user-input').value = '';
+    document.getElementById('score-card').style.display = 'none';
+  }
+
+  function startQuiz() {
+    quizPool = getSelectedPool();
+    if (quizPool.length === 0) {
+      alert("Please select at least one group with words.");
+      return;
+    }
+
+    executionMode = document.getElementById('execution-mode').value;
+    roundResults = [];
+
+    if (executionMode === 'round') {
+      // Shuffle a fresh copy so every selected item is asked exactly once.
+      roundQueue = [...quizPool].sort(() => Math.random() - 0.5);
+      document.getElementById('start-btn').innerText = 'Restart Quiz';
+    } else {
+      roundQueue = [];
+      document.getElementById('start-btn').innerText = 'Start / Next Word';
+    }
+
+    resetQuizDisplay();
+    nextQuestion();
+  }
+
   function nextQuestion() {
-    const pool = getSelectedPool();
+    if (executionMode === 'round' && roundQueue.length === 0) {
+      if (roundResults.length > 0) {
+        showScoreCard();
+      }
+      return;
+    }
+
+    const pool = quizPool.length > 0 ? quizPool : getSelectedPool();
     if (pool.length === 0) {
       alert("Please select at least one group with words.");
       return;
     }
 
-    const feedback = document.getElementById('feedback');
-    feedback.className = 'feedback';
-    feedback.innerText = '';
-    document.getElementById('user-input').value = '';
-
+    resetQuizDisplay();
     document.getElementById('quiz-card').style.display = 'block';
 
-    currentItem = pool[Math.floor(Math.random() * pool.length)];
-    const mode = document.getElementById('quiz-mode').value;
-
-    if (mode === 'mixed') {
-      currentDirection = Math.random() > 0.5 ? 'en-to-yale' : 'yale-to-en';
+    if (executionMode === 'round') {
+      currentItem = roundQueue.shift();
     } else {
-      currentDirection = mode;
+      currentItem = pool[Math.floor(Math.random() * pool.length)];
     }
+
+    currentDirection = chooseDirection();
 
     if (currentDirection === 'en-to-yale') {
       document.getElementById('prompt-direction').innerText = "Translate to Yale Cantonese";
@@ -352,12 +494,32 @@
     e.preventDefault();
     if (!currentItem) return;
 
-    const userInput = document.getElementById('user-input').value.trim();
+    const rawUserInput = document.getElementById('user-input').value;
+    const userInput = rawUserInput.trim();
     const feedback = document.getElementById('feedback');
+    const target = getTarget(currentItem, currentDirection);
+    const isCorrect = normalizeAnswer(userInput) === normalizeAnswer(target);
 
-    let target = currentDirection === 'en-to-yale' ? currentItem.yale : currentItem.english;
+    if (executionMode === 'round') {
+      // Record the result silently; feedback is deliberately withheld until the end.
+      roundResults.push({
+        item: currentItem,
+        direction: currentDirection,
+        userAnswer: userInput,
+        target,
+        correct: isCorrect
+      });
 
-    if (userInput === target) {
+      currentItem = null;
+      if (roundQueue.length === 0) {
+        showScoreCard();
+      } else {
+        nextQuestion();
+      }
+      return;
+    }
+
+    if (isCorrect) {
       feedback.className = 'feedback correct';
       feedback.innerText = '✓ Correct!';
       setTimeout(nextQuestion, 1200);
@@ -365,6 +527,51 @@
       feedback.className = 'feedback incorrect';
       feedback.innerText = `✗ Incorrect. Target: "${target}"`;
     }
+  }
+
+  function showScoreCard() {
+    currentItem = null;
+    document.getElementById('quiz-card').style.display = 'none';
+
+    const total = roundResults.length;
+    const correct = roundResults.filter(result => result.correct).length;
+    const percent = total === 0 ? 0 : Math.round((correct / total) * 100);
+
+    document.getElementById('score-number').innerText = `${correct} / ${total} correct`;
+    document.getElementById('score-percent').innerText = `${percent}%`;
+
+    const body = document.getElementById('score-table-body');
+    body.innerHTML = '';
+
+    roundResults.forEach(result => {
+      const row = document.createElement('tr');
+      const prompt = result.direction === 'en-to-yale'
+        ? result.item.english
+        : `${result.item.yale}${result.item.chinese ? ' (' + result.item.chinese + ')' : ''}`;
+      const resultClass = result.correct ? 'result-correct' : 'result-incorrect';
+      const resultText = result.correct ? '✓ Right' : '✗ Wrong';
+
+      row.innerHTML = `
+        <td>${escapeHtml(prompt)}</td>
+        <td>${getDirectionLabel(result.direction)}</td>
+        <td class="answer-cell">${escapeHtml(result.userAnswer)}</td>
+        <td class="answer-cell">${escapeHtml(result.target)}</td>
+        <td class="${resultClass}">${resultText}</td>
+      `;
+      body.appendChild(row);
+    });
+
+    document.getElementById('score-card').style.display = 'block';
+    document.getElementById('start-btn').innerText = 'Start New Quiz';
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
   function renderVocabTree() {

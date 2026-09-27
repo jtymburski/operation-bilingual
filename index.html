@@ -106,6 +106,26 @@
     .prompt-title { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
     .prompt-word { font-size: 2rem; font-weight: bold; margin-top: 8px; }
 
+    .prompt-meta {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .language-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #475569;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
     .round-progress {
       display: none;
       text-align: center;
@@ -166,11 +186,47 @@
     .status-banner.error { background: #fee2e2; color: var(--error); border: 1px solid var(--error); display: block; }
 
     .word-list-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px;
+      padding: 12px 8px;
       border-bottom: 1px solid var(--border);
+    }
+
+    .word-list-item:last-child { border-bottom: none; }
+
+    .vocab-word {
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .vocab-forms {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 10px;
+    }
+
+    .vocab-form {
+      padding: 7px 9px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      min-width: 0;
+    }
+
+    .vocab-form-label {
+      display: block;
+      color: #64748b;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    .vocab-form-value {
+      word-break: break-word;
+    }
+
+    @media (max-width: 480px) {
+      .vocab-forms { grid-template-columns: 1fr; }
     }
 
     .score-card {
@@ -252,9 +308,12 @@
 
       <label for="quiz-mode">Quiz Direction:</label>
       <select id="quiz-mode" style="width: 100%; margin-bottom: 16px;">
-        <option value="en-to-yale">English ➔ Yale Cantonese</option>
-        <option value="yale-to-en">Yale Cantonese ➔ English</option>
-        <option value="mixed">Mixed (Both Directions)</option>
+        <option value="en-to-yale">English ➔ Yale</option>
+        <option value="en-to-jyutping">English ➔ Jyutping</option>
+        <option value="romanization-to-en">Yale / Jyutping ➔ English</option>
+        <option value="mixed-yale">Both Directions (Yale)</option>
+        <option value="mixed-jyutping">Both Directions (Jyutping)</option>
+        <option value="all">All Modes</option>
       </select>
 
       <label for="execution-mode">Execution Mode:</label>
@@ -271,6 +330,7 @@
       <div class="prompt-box">
         <div class="prompt-title" id="prompt-direction">Translate to Yale</div>
         <div class="prompt-word" id="prompt-text">---</div>
+        <div class="prompt-meta" id="prompt-meta"></div>
       </div>
 
       <form onsubmit="handleAnswer(event)" style="display:flex; flex-direction:column; gap:8px;">
@@ -435,19 +495,60 @@
   }
 
   function getDirectionLabel(direction) {
-    return direction === 'en-to-yale' ? 'English ➔ Yale' : 'Yale ➔ English';
+    const labels = {
+      'en-to-yale': 'English ➔ Yale',
+      'en-to-jyutping': 'English ➔ Jyutping',
+      'yale-to-en': 'Yale ➔ English',
+      'jyutping-to-en': 'Jyutping ➔ English'
+    };
+    return labels[direction] || direction;
   }
 
   function chooseDirection() {
     const mode = document.getElementById('quiz-mode').value;
-    if (mode === 'mixed') {
+    if (mode === 'en-to-yale' || mode === 'en-to-jyutping') return mode;
+
+    if (mode === 'romanization-to-en') {
+      return Math.random() > 0.5 ? 'yale-to-en' : 'jyutping-to-en';
+    }
+
+    if (mode === 'mixed-yale') {
       return Math.random() > 0.5 ? 'en-to-yale' : 'yale-to-en';
     }
-    return mode;
+
+    if (mode === 'mixed-jyutping') {
+      return Math.random() > 0.5 ? 'en-to-jyutping' : 'jyutping-to-en';
+    }
+
+    // All Modes: choose evenly from the four fundamental directions.
+    const directions = ['en-to-yale', 'en-to-jyutping', 'yale-to-en', 'jyutping-to-en'];
+    return directions[Math.floor(Math.random() * directions.length)];
   }
 
   function getTarget(item, direction) {
-    return direction === 'en-to-yale' ? item.yale : item.english;
+    switch (direction) {
+      case 'en-to-yale': return item.yale;
+      case 'en-to-jyutping': return item.jyutping;
+      case 'yale-to-en':
+      case 'jyutping-to-en':
+        return item.english;
+      default: return '';
+    }
+  }
+
+  function getPrompt(item, direction) {
+    switch (direction) {
+      case 'en-to-yale':
+        return { title: 'Translate to Yale', text: item.english, answerLabel: 'Your Answer (Yale)', accents: true };
+      case 'en-to-jyutping':
+        return { title: 'Translate to Jyutping', text: item.english, answerLabel: 'Your Answer (Jyutping)', accents: false };
+      case 'yale-to-en':
+        return { title: 'Translate to English', text: item.yale, answerLabel: 'Your Answer (English)', accents: false };
+      case 'jyutping-to-en':
+        return { title: 'Translate to English', text: item.jyutping, answerLabel: 'Your Answer (English)', accents: false };
+      default:
+        return { title: '', text: '', answerLabel: 'Your Answer', accents: false };
+    }
   }
 
   function updateRoundProgress() {
@@ -527,15 +628,22 @@
 
     updateRoundProgress();
     currentDirection = chooseDirection();
+    const prompt = getPrompt(currentItem, currentDirection);
 
-    if (currentDirection === 'en-to-yale') {
-      document.getElementById('prompt-direction').innerText = "Translate to Yale Cantonese";
-      document.getElementById('prompt-text').innerText = currentItem.english;
-      document.getElementById('accent-buttons').style.display = 'flex';
-    } else {
-      document.getElementById('prompt-direction').innerText = "Translate to English";
-      document.getElementById('prompt-text').innerText = `${currentItem.yale} ${currentItem.chinese ? '(' + currentItem.chinese + ')' : ''}`;
-      document.getElementById('accent-buttons').style.display = 'none';
+    document.getElementById('prompt-direction').innerText = prompt.title;
+    document.getElementById('prompt-text').innerText = prompt.text;
+    document.getElementById('user-input').setAttribute('aria-label', prompt.answerLabel);
+    document.querySelector('label[for="user-input"]').innerText = prompt.answerLabel;
+    document.getElementById('accent-buttons').style.display = prompt.accents ? 'flex' : 'none';
+
+    const meta = document.getElementById('prompt-meta');
+    meta.innerHTML = '';
+    if (currentDirection === 'yale-to-en' && currentItem.jyutping) {
+      meta.innerHTML = `<span class="language-pill">Jyutping: ${escapeHtml(currentItem.jyutping)}</span>`;
+    } else if (currentDirection === 'jyutping-to-en') {
+      meta.innerHTML = `<span class="language-pill">Yale: ${escapeHtml(currentItem.yale)}</span>`;
+    } else if ((currentDirection === 'en-to-yale' || currentDirection === 'en-to-jyutping') && currentItem.chinese) {
+      meta.innerHTML = `<span class="language-pill">${escapeHtml(currentItem.chinese)}</span>`;
     }
 
     document.getElementById('user-input').focus();
@@ -639,8 +747,21 @@
         const itemEl = document.createElement('div');
         itemEl.className = 'word-list-item';
         itemEl.innerHTML = `
-          <div>
-            <strong>${item.english}</strong> — <code>${item.yale}</code> ${item.chinese ? '[' + item.chinese + ']' : ''}
+          <div class="vocab-word">${escapeHtml(item.english)}</div>
+          <div class="vocab-forms">
+            <div class="vocab-form">
+              <span class="vocab-form-label">Yale</span>
+              <span class="vocab-form-value">${escapeHtml(item.yale)}</span>
+            </div>
+            <div class="vocab-form">
+              <span class="vocab-form-label">Jyutping</span>
+              <span class="vocab-form-value">${escapeHtml(item.jyutping || '—')}</span>
+            </div>
+            ${item.chinese ? `
+            <div class="vocab-form">
+              <span class="vocab-form-label">Chinese</span>
+              <span class="vocab-form-value">${escapeHtml(item.chinese)}</span>
+            </div>` : ''}
           </div>
         `;
         gEl.appendChild(itemEl);

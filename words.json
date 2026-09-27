@@ -251,7 +251,7 @@
           "jyutping": "hoeng1ziu1"
         },
         {
-          "english": "grape",
+          "english": "grapes (short)",
           "yale": "tàihjí",
           "jyutping": "tai4zi2"
         },
@@ -266,7 +266,7 @@
           "jyutping": "lei2"
         },
         {
-          "english": "water-melon",
+          "english": "watermelon",
           "yale": "sāigwā",
           "jyutping": "sai1gwaa1"
         },
@@ -286,9 +286,80 @@
           "jyutping": "lai6zi1"
         },
         {
-          "english": "kiwifruit",
+          "english": "kiwi",
           "yale": "kèihyihgwó",
           "jyutping": "kei4ji6gwo2"
+        }
+      ]
+    },
+    {
+      "name": "Fruits and Vegetables",
+      "items": [
+        {
+          "english": "cherry",
+          "yale": "yīngtòuh",
+          "jyutping": "jing1tou4"
+        },
+        {
+          "english": "grapes (long)",
+          "yale": "pòuhtàihjí",
+          "jyutping": "pou4tai4zi2"
+        },
+        {
+          "english": "lemon",
+          "yale": "nìhngmúng",
+          "jyutping": "ning4mung1"
+        },
+        {
+          "english": "strawberry (中國)",
+          "yale": "chóumùih",
+          "jyutping": "cou2mui4"
+        },
+        {
+          "english": "strawberry (香港)",
+          "yale": "sih dō bē léi",
+          "jyutping": "si6 do1 be1 lei2",
+          "chinese": "士多啤梨"
+        },
+        {
+          "english": "tomato",
+          "yale": "fāanké",
+          "jyutping": "faan1ke2"
+        },
+        {
+          "english": "lettuce",
+          "yale": "sāangchoi",
+          "jyutping": "saang1coi3"
+        },
+        {
+          "english": "carrot",
+          "yale": "hùhnglòhbaahk",
+          "jyutping": "hung4lo4baak6"
+        },
+        {
+          "english": "corn",
+          "yale": "sūkmáih",
+          "jyutping": "suk1mai5"
+        },
+        {
+          "english": "green beans",
+          "yale": "chēngdáu",
+          "jyutping": "ceng1dau2"
+        },
+        {
+          "english": "snow peas",
+          "yale": "syuhtdáu",
+          "jyutping": "syut3dau2"
+        },
+        {
+          "english": "potato",
+          "yale": "syùhjái",
+          "jyutping": "syu4zai2"
+        },
+        {
+          "english": "onion",
+          "yale": "yèuhng chūng",
+          "jyutping": "joeng4cung1"
         }
       ]
     },
@@ -347,47 +418,47 @@
         },
         {
           "english": "20",
-          "yale": "yih-sahp",
+          "yale": "yihsahp",
           "jyutping": "ji6sap6"
         },
         {
           "english": "30",
-          "yale": "sāam-sahp",
+          "yale": "sāamsahp",
           "jyutping": "saam1sap6"
         },
         {
           "english": "40",
-          "yale": "sei-sahp",
+          "yale": "seisahp",
           "jyutping": "sei3sap6"
         },
         {
           "english": "50",
-          "yale": "ńgh-sahp",
+          "yale": "ńghsahp",
           "jyutping": "ng5sap6"
         },
         {
           "english": "60",
-          "yale": "luhk-sahp",
+          "yale": "luhksahp",
           "jyutping": "luk6sap6"
         },
         {
           "english": "70",
-          "yale": "chāt-sahp",
+          "yale": "chātsahp",
           "jyutping": "cat1sap6"
         },
         {
           "english": "80",
-          "yale": "baat-sahp",
+          "yale": "baatsahp",
           "jyutping": "baat3sap6"
         },
         {
           "english": "90",
-          "yale": "gáu-sahp",
+          "yale": "gáusahp",
           "jyutping": "gau2sap6"
         },
         {
           "english": "100",
-          "yale": "yāt-baak",
+          "yale": "yātbaak",
           "jyutping": "jat1baak3"
         }
       ]

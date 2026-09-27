@@ -106,20 +106,37 @@
     .prompt-title { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
     .prompt-word { font-size: 2rem; font-weight: bold; margin-top: 8px; }
 
+    .round-progress {
+      display: none;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: -8px;
+    }
+
+    .round-progress.active { display: block; }
+
     .accent-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
       justify-content: center;
       margin-top: 4px;
     }
 
     .accent-btn {
-      padding: 6px 10px;
+      min-height: 48px;
+      padding: 9px 12px;
       background: #e2e8f0;
       color: var(--text);
-      font-size: 1.1rem;
-      border-radius: 4px;
+      font-size: 1.3rem;
+      border-radius: 6px;
+      touch-action: manipulation;
+    }
+
+    @media (min-width: 500px) {
+      .accent-bar { max-width: 420px; margin-left: auto; margin-right: auto; }
     }
 
     .feedback {
@@ -244,6 +261,7 @@
     </div>
 
     <div class="card" id="quiz-card" style="display:none;">
+      <div class="round-progress" id="round-progress" aria-live="polite"></div>
       <div class="prompt-box">
         <div class="prompt-title" id="prompt-direction">Translate to Yale</div>
         <div class="prompt-word" id="prompt-text">---</div>
@@ -272,7 +290,7 @@
           <button type="button" class="accent-btn" onclick="insertAccent('ù')">ù</button>
         </div>
 
-        <button type="submit" style="margin-top:8px;">Check Answer</button>
+        <button type="submit" style="margin-top:8px;" onpointerdown="document.getElementById('user-input').focus({preventScroll:true});">Check Answer</button>
       </form>
 
       <div id="feedback" class="feedback"></div>
@@ -318,6 +336,7 @@
   let roundQueue = [];
   let roundResults = [];
   let quizPool = [];
+  let lastRepeatItem = null;
 
   function showStatus(message) {
     const banner = document.getElementById('status-banner');
@@ -421,6 +440,18 @@
     return direction === 'en-to-yale' ? item.yale : item.english;
   }
 
+  function updateRoundProgress() {
+    const progress = document.getElementById('round-progress');
+    if (executionMode === 'round' && quizPool.length > 0) {
+      const completed = roundResults.length;
+      progress.innerText = `${completed + 1}/${quizPool.length}`;
+      progress.classList.add('active');
+    } else {
+      progress.classList.remove('active');
+      progress.innerText = '';
+    }
+  }
+
   function resetQuizDisplay() {
     const feedback = document.getElementById('feedback');
     feedback.className = 'feedback';
@@ -438,6 +469,7 @@
 
     executionMode = document.getElementById('execution-mode').value;
     roundResults = [];
+    lastRepeatItem = null;
 
     if (executionMode === 'round') {
       // Shuffle a fresh copy so every selected item is asked exactly once.
@@ -472,9 +504,18 @@
     if (executionMode === 'round') {
       currentItem = roundQueue.shift();
     } else {
-      currentItem = pool[Math.floor(Math.random() * pool.length)];
+      // Avoid asking the exact same item twice in a row when alternatives exist.
+      if (pool.length === 1) {
+        currentItem = pool[0];
+      } else {
+        do {
+          currentItem = pool[Math.floor(Math.random() * pool.length)];
+        } while (currentItem === lastRepeatItem);
+      }
+      lastRepeatItem = currentItem;
     }
 
+    updateRoundProgress();
     currentDirection = chooseDirection();
 
     if (currentDirection === 'en-to-yale') {
@@ -499,6 +540,7 @@
     const feedback = document.getElementById('feedback');
     const target = getTarget(currentItem, currentDirection);
     const isCorrect = normalizeAnswer(userInput) === normalizeAnswer(target);
+    const input = document.getElementById('user-input');
 
     if (executionMode === 'round') {
       // Record the result silently; feedback is deliberately withheld until the end.
@@ -526,6 +568,7 @@
     } else {
       feedback.className = 'feedback incorrect';
       feedback.innerText = `✗ Incorrect. Target: "${target}"`;
+      input.focus({ preventScroll: true });
     }
   }
 

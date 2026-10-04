@@ -398,12 +398,12 @@
         <label for="user-input">Your Answer (Strict Accents):</label>
         <input type="text" id="user-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
 
+        <div id="feedback" class="feedback"></div>
+
         <button type="submit" id="submit-answer-btn" style="margin-top:8px;" onpointerdown="document.getElementById('user-input').focus({preventScroll:true});">Check Answer</button>
         <button type="button" id="skip-btn" class="btn-skip" style="margin-top:4px;" onclick="skipQuestion()">Next Word</button>
         <button type="button" id="finish-quiz-btn" class="btn-finish" style="display:none; margin-top:4px;" onclick="finishRound()">Finish Quiz</button>
       </form>
-
-      <div id="feedback" class="feedback"></div>
     </div>
 
     <div class="card score-card" id="score-card">

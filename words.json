@@ -5,6 +5,7 @@
       "items": [
         {
           "english": "Britain, the UK",
+          "english_alt": ["Britain", "England"],
           "yale": "Yīnggwok",
           "jyutping": "jing1gwok3"
         },

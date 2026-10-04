@@ -302,6 +302,21 @@
 
     .btn-finish { background: #166534; }
     .btn-finish:hover { background: #14532d; }
+
+    .quiz-settings {
+      padding: 0;
+    }
+
+    .quiz-settings summary {
+      cursor: pointer;
+      padding: 16px 20px;
+      font-weight: 700;
+      list-style-position: inside;
+    }
+
+    .quiz-settings-body {
+      padding: 0 20px 20px;
+    }
   </style>
 </head>
 <body>
@@ -317,12 +332,14 @@
 
   <!-- QUIZ VIEW -->
   <div id="view-quiz" class="view active">
-    <div class="card">
-      <label>Active Groups:</label>
-      <div id="quiz-group-chips" class="group-select"></div>
+    <details class="card quiz-settings" id="quiz-settings-card" open>
+      <summary>Quiz Selections</summary>
+      <div class="quiz-settings-body">
+        <label>Active Groups:</label>
+        <div id="quiz-group-chips" class="group-select"></div>
 
-      <label for="quiz-mode">Quiz Direction:</label>
-      <select id="quiz-mode" style="width: 100%; margin-bottom: 16px;">
+        <label for="quiz-mode">Quiz Direction:</label>
+        <select id="quiz-mode" style="width: 100%; margin-bottom: 16px;">
         <option value="en-to-yale">English ➔ Yale</option>
         <option value="en-to-jyutping">English ➔ Jyutping</option>
         <option value="romanization-to-en">Yale / Jyutping ➔ English</option>
@@ -331,14 +348,15 @@
         <option value="all">All Modes</option>
       </select>
 
-      <label for="execution-mode">Execution Mode:</label>
-      <select id="execution-mode" style="width: 100%; margin-bottom: 16px;">
-        <option value="repeat">Random Repeat — immediate feedback</option>
-        <option value="round">Full Round — each word once, score at end</option>
-      </select>
+        <label for="execution-mode">Execution Mode:</label>
+        <select id="execution-mode" style="width: 100%; margin-bottom: 16px;">
+          <option value="repeat">Random Repeat — immediate feedback</option>
+          <option value="round">Full Round — each word once, score at end</option>
+        </select>
 
-      <button id="start-btn" onclick="startQuiz()">Start / Next Word</button>
-    </div>
+        <button id="start-btn" onclick="startQuiz()">Start / Next Word</button>
+      </div>
+    </details>
 
     <div class="card" id="quiz-card" style="display:none;">
       <div class="round-progress" id="round-progress" aria-live="polite"></div>
@@ -522,7 +540,10 @@
   }
 
   function normalizeAnswer(value) {
-    return String(value ?? '').trim().toLocaleLowerCase();
+    return String(value ?? '')
+      .trim()
+      .toLocaleLowerCase()
+      .replace(/\p{P}/gu, '');
   }
 
   function getDirectionLabel(direction) {
@@ -615,6 +636,7 @@
 
     executionMode = document.getElementById('execution-mode').value;
     roundResults = [];
+    document.getElementById('quiz-settings-card').open = false;
     lastRepeatItem = null;
 
     if (executionMode === 'round') {
@@ -703,7 +725,14 @@
     const userInput = rawUserInput.trim();
     const feedback = document.getElementById('feedback');
     const target = getTarget(currentItem, currentDirection);
-    const isCorrect = normalizeAnswer(userInput) === normalizeAnswer(target);
+    const acceptedTargets = [target];
+    if (currentDirection === 'yale-to-en' || currentDirection === 'jyutping-to-en') {
+      if (Array.isArray(currentItem.english_alt)) {
+        acceptedTargets.push(...currentItem.english_alt);
+      }
+    }
+    const normalizedUserInput = normalizeAnswer(userInput);
+    const isCorrect = acceptedTargets.some(answer => normalizeAnswer(answer) === normalizedUserInput);
     const input = document.getElementById('user-input');
 
     if (executionMode === 'round') {

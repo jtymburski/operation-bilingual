@@ -303,6 +303,9 @@
     .btn-finish { background: #166534; }
     .btn-finish:hover { background: #14532d; }
 
+    .btn-skip { background: #64748b; }
+    .btn-skip:hover { background: #475569; }
+
     .quiz-settings {
       padding: 0;
     }
@@ -394,6 +397,7 @@
         <input type="text" id="user-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
 
         <button type="submit" id="submit-answer-btn" style="margin-top:8px;" onpointerdown="document.getElementById('user-input').focus({preventScroll:true});">Check Answer</button>
+        <button type="button" id="skip-btn" class="btn-skip" style="margin-top:4px;" onclick="skipQuestion()">Next Word</button>
         <button type="button" id="finish-quiz-btn" class="btn-finish" style="display:none; margin-top:4px;" onclick="finishRound()">Finish Quiz</button>
       </form>
 
@@ -452,6 +456,7 @@
   let roundResults = [];
   let quizPool = [];
   let lastRepeatItem = null;
+  let nextQuestionTimer = null;
 
   function showStatus(message) {
     const banner = document.getElementById('status-banner');
@@ -625,6 +630,11 @@
     document.getElementById('user-input').value = '';
     document.getElementById('score-card').style.display = 'none';
     document.getElementById('finish-quiz-btn').style.display = 'none';
+    if (nextQuestionTimer) {
+      clearTimeout(nextQuestionTimer);
+      nextQuestionTimer = null;
+    }
+    document.getElementById('skip-btn').style.display = executionMode === 'repeat' ? 'block' : 'none';
   }
 
   function startQuiz() {
@@ -690,6 +700,7 @@
     document.getElementById('prompt-direction').innerText = prompt.title;
     document.getElementById('prompt-text').innerText = prompt.text;
     document.getElementById('submit-answer-btn').innerText = executionMode === 'round' ? 'Submit Answer' : 'Check Answer';
+    document.getElementById('skip-btn').style.display = executionMode === 'repeat' ? 'block' : 'none';
     document.getElementById('user-input').setAttribute('aria-label', prompt.answerLabel);
     document.querySelector('label[for="user-input"]').innerText = prompt.answerLabel;
     document.getElementById('accent-buttons').style.display = prompt.accents ? 'flex' : 'none';
@@ -757,12 +768,25 @@
     if (isCorrect) {
       feedback.className = 'feedback correct';
       feedback.innerText = '✓ Correct!';
-      setTimeout(nextQuestion, 1200);
+      nextQuestionTimer = setTimeout(() => {
+        nextQuestionTimer = null;
+        nextQuestion();
+      }, 1200);
     } else {
       feedback.className = 'feedback incorrect';
       feedback.innerText = `✗ Incorrect. Target: "${target}"`;
+      document.getElementById('skip-btn').style.display = 'block';
       input.focus({ preventScroll: true });
     }
+  }
+
+  function skipQuestion() {
+    if (executionMode !== 'repeat' || !currentItem) return;
+    if (nextQuestionTimer) {
+      clearTimeout(nextQuestionTimer);
+      nextQuestionTimer = null;
+    }
+    nextQuestion();
   }
 
   function showScoreCard() {

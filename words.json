@@ -224,7 +224,7 @@
       ]
     },
     {
-      "name": "Fruits [cc]",
+      "name": "Fruits",
       "items": [
         {
           "english": "fruit",
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "name": "Fruits and Vegetables",
+      "name": "Food p4",
       "items": [
         {
           "english": "cherry",
@@ -419,48 +419,143 @@
         },
         {
           "english": "20",
-          "yale": "yihsahp",
-          "jyutping": "ji6sap6"
+          "yale": "yih-sahp",
+          "jyutping": "ji6 sap6"
         },
         {
           "english": "30",
-          "yale": "sāamsahp",
-          "jyutping": "saam1sap6"
+          "yale": "sāam-sahp",
+          "jyutping": "saam1 sap6"
         },
         {
           "english": "40",
-          "yale": "seisahp",
-          "jyutping": "sei3sap6"
+          "yale": "sei-sahp",
+          "jyutping": "sei3 sap6"
         },
         {
           "english": "50",
-          "yale": "ńghsahp",
-          "jyutping": "ng5sap6"
+          "yale": "ńgh-sahp",
+          "jyutping": "ng5 sap6"
         },
         {
           "english": "60",
-          "yale": "luhksahp",
-          "jyutping": "luk6sap6"
+          "yale": "luhk-sahp",
+          "jyutping": "luk6 sap6"
         },
         {
           "english": "70",
-          "yale": "chātsahp",
-          "jyutping": "cat1sap6"
+          "yale": "chāt-sahp",
+          "jyutping": "cat1 sap6"
         },
         {
           "english": "80",
-          "yale": "baatsahp",
-          "jyutping": "baat3sap6"
+          "yale": "baat-sahp",
+          "jyutping": "baat3 sap6"
         },
         {
           "english": "90",
-          "yale": "gáusahp",
-          "jyutping": "gau2sap6"
+          "yale": "gáu-sahp",
+          "jyutping": "gau2 sap6"
         },
         {
           "english": "100",
-          "yale": "yātbaak",
-          "jyutping": "jat1baak3"
+          "yale": "yāt-baak",
+          "jyutping": "jat1 baak3"
+        }
+      ]
+    },
+    {
+      "name": "Interests and Leisure",
+      "items": [
+        {
+          "english": "to watch a movie (formal)",
+          "yale": "tái-dihnyíng",
+          "jyutping": "tai2 din6jing2"
+        },
+        {
+          "english": "to watch a movie (casual)",
+          "yale": "tái-hei",
+          "jyutping": "tai2 hei3"
+        },
+        {
+          "english": "to watch television",
+          "yale": "tái-dihnsih",
+          "jyutping": "tai2 din6si6"
+        },
+        {
+          "english": "to go traveling",
+          "yale": "heui-léuihhàhng",
+          "jyutping": "heoi3 leoi5hang4"
+        },
+        {
+          "english": "to take pictures",
+          "yale": "yíng-séung",
+          "jyutping": "jing2 soeng2"
+        },
+        {
+          "english": "to listen to music",
+          "yale": "tēng-yāmngohk",
+          "jyutping": "teng1 jam1ngok6"
+        },
+        {
+          "english": "to listen to the radio",
+          "yale": "tēng-sāuyāmgēi",
+          "jyutping": "teng1 sau1jam1gei1"
+        },
+        {
+          "english": "to play tennis",
+          "yale": "dá-móhngkàuh",
+          "jyutping": "daa2 mong5kau4"
+        },
+        {
+          "english": "to play basketball",
+          "yale": "dá-làahmkàuh",
+          "jyutping": "daa2 laam4kau4"
+        },
+        {
+          "english": "to play soccer",
+          "yale": "tek-jūkkàuh",
+          "jyutping": "tek3 zuk1kau4"
+        },
+        {
+          "english": "to ride a bicycle",
+          "yale": "cháai-dāanchē",
+          "jyutping": "caai2 daan1ce1"
+        },
+        {
+          "english": "to swim",
+          "yale": "yàuh-séui",
+          "jyutping": "jau4 seoi2"
+        },
+        {
+          "english": "to run",
+          "yale": "páau-bouh",
+          "jyutping": "paau2 bou6"
+        },
+        {
+          "english": "to sing",
+          "yale": "cheung-gō",
+          "jyutping": "coeng3 go1"
+        },
+        {
+          "english": "to read",
+          "yale": "tái-syū",
+          "jyutping": "tai2 syu1"
+        },
+        {
+          "english": "to read the newspaper",
+          "yale": "tái-boují",
+          "jyutping": "tai2 bou3zi2"
+        },
+        {
+          "english": "to go window-shopping",
+          "yale": "hàahng-gāai",
+          "jyutping": "haang4 gaai1"
+        },
+        {
+          "english": "to play electronic games",
+          "yale": "wáan-yàuhheigēi",
+          "jyutping": "waan2 jau4hei3gei1"
         }
       ]
     }

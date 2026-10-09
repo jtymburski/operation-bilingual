@@ -365,6 +365,91 @@
       ]
     },
     {
+      "name": "Food p5",
+      "items": [
+        {
+          "english": "meat",
+          "yale": "yuhk",
+          "jyutping": "juk6"
+        },
+        {
+          "english": "fish",
+          "yale": "yú",
+          "jyutping": "jyu2"
+        },
+        {
+          "english": "coffee",
+          "yale": "gafē",
+          "jyutping": "gaa3fei1"
+        },
+        {
+          "english": "tea",
+          "yale": "chàh",
+          "jyutping": "caa4"
+        },
+        {
+          "english": "milk",
+          "yale": "ngàuhnáaih",
+          "jyutping": "ngau4naai5"
+        },
+        {
+          "english": "salad",
+          "yale": "sāléut",
+          "jyutping": "saa1leut2"
+        },
+        {
+          "english": "pie",
+          "yale": "pāi",
+          "jyutping": "paai1"
+        },
+        {
+          "english": "cake",
+          "yale": "daahngōu",
+          "jyutping": "daan6gou1"
+        },
+        {
+          "english": "cracker",
+          "yale": "béng",
+          "jyutping": "bing2"
+        },
+        {
+          "english": "bread",
+          "yale": "mihnbāau",
+          "jyutping": "min6baau1"
+        },
+        {
+          "english": "chicken",
+          "yale": "gāi",
+          "jyutping": "gai1"
+        },
+        {
+          "english": "plate",
+          "yale": "díp",
+          "jyutping": "dip6"
+        },
+        {
+          "english": "cup",
+          "yale": "būi",
+          "jyutping": "bui1"
+        },
+        {
+          "english": "knife",
+          "yale": "dōu",
+          "jyutping": "dou1"
+        },
+        {
+          "english": "fork",
+          "yale": "chā",
+          "jyutping": "caa1"
+        },
+        {
+          "english": "spoon",
+          "yale": "chìhgāng",
+          "jyutping": "ci4gang1"
+        }
+      ]
+    },
+    {
       "name": "Numbers",
       "items": [
         {

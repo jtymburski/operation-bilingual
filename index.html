@@ -709,13 +709,16 @@
 
     const meta = document.getElementById('prompt-meta');
     meta.innerHTML = '';
+    const metaPills = [];
     if (currentDirection === 'yale-to-en' && currentItem.jyutping) {
-      meta.innerHTML = `<span class="language-pill">Jyutping: ${escapeHtml(currentItem.jyutping)}</span>`;
-    } else if (currentDirection === 'jyutping-to-en') {
-      meta.innerHTML = `<span class="language-pill">Yale: ${escapeHtml(currentItem.yale)}</span>`;
-    } else if ((currentDirection === 'en-to-yale' || currentDirection === 'en-to-jyutping') && currentItem.chinese) {
-      meta.innerHTML = `<span class="language-pill">${escapeHtml(currentItem.chinese)}</span>`;
+      metaPills.push(`<span class="language-pill">Jyutping: ${escapeHtml(currentItem.jyutping)}</span>`);
+    } else if (currentDirection === 'jyutping-to-en' && currentItem.yale) {
+      metaPills.push(`<span class="language-pill">Yale: ${escapeHtml(currentItem.yale)}</span>`);
     }
+    if (currentItem.chinese) {
+      metaPills.push(`<span class="language-pill">Chinese: ${escapeHtml(currentItem.chinese)}</span>`);
+    }
+    meta.innerHTML = metaPills.join('');
 
     document.getElementById('user-input').focus();
   }

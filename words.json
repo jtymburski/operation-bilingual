@@ -7,82 +7,98 @@
           "english": "Britain, the UK",
           "english_alt": ["Britain", "England"],
           "yale": "Yīnggwok",
-          "jyutping": "jing1gwok3"
+          "jyutping": "jing1gwok3",
+          "chinese": "英國"
         },
         {
           "english": "United States",
           "yale": "Méihgwok",
-          "jyutping": "mei5gwok3"
+          "jyutping": "mei5gwok3",
+          "chinese": "美國"
         },
         {
           "english": "Canada",
           "yale": "Gānàhdaaih",
-          "jyutping": "gaa1naa4daai6"
+          "jyutping": "gaa1naa4daai6",
+          "chinese": "加拿大"
         },
         {
           "english": "Australia",
           "yale": "Oujāu",
-          "jyutping": "ou3zau1"
+          "jyutping": "ou3zau1",
+          "chinese": "澳洲"
         },
         {
           "english": "New Zealand",
           "yale": "Náusāilàahn",
-          "jyutping": "naau2sai1laan4"
+          "jyutping": "naau2sai1laan4",
+          "chinese": "紐西蘭"
         },
         {
           "english": "France",
           "yale": "Faatgwok",
-          "jyutping": "faat3gwok3"
+          "jyutping": "faat3gwok3",
+          "chinese": "法國"
         },
         {
           "english": "Germany",
           "yale": "Dākgwok",
-          "jyutping": "dak1gwok3"
+          "jyutping": "dak1gwok3",
+          "chinese": "德國"
         },
         {
           "english": "Italy",
           "yale": "Yidaaihleih",
-          "jyutping": "ji3daai6lei6"
+          "jyutping": "ji3daai6lei6",
+          "chinese": "意大利"
         },
         {
           "english": "Spain",
           "yale": "Sāibāanngàh",
-          "jyutping": "sai1baan1ngaa4"
+          "jyutping": "sai1baan1ngaa4",
+          "chinese": "西班牙"
         },
         {
           "english": "the Philippines",
           "yale": "Fēileuhtbān",
-          "jyutping": "fei1leot6ban1"
+          "jyutping": "fei1leot6ban1",
+          "chinese": "菲律賓"
         },
         {
           "english": "Japan",
           "yale": "Yahtbún",
-          "jyutping": "jat6bun2"
+          "jyutping": "jat6bun2",
+          "chinese": "日本"
         },
         {
           "english": "Korea",
           "yale": "Hòhngwok",
-          "jyutping": "hon4gwok3"
+          "jyutping": "hon4gwok3",
+          "chinese": "韓國"
         },
         {
           "english": "India",
           "yale": "Yandouh",
-          "jyutping": "jan3dou6"
+          "jyutping": "jan3dou6",
+          "chinese": "印度"
         },
         {
           "english": "Pakistan",
           "yale": "Bāgēisītáan",
-          "jyutping": "baa1gei1si1taan2"
+          "jyutping": "baa1gei1si1taan2",
+          "chinese": "巴基斯坦"
         },
         {
           "english": "Hong Kong",
           "yale": "Heūnggóng",
-          "jyutping": "hoeng1gong2"
+          "jyutping": "hoeng1gong2",
+          "chinese": "香港"
         },
         {
           "english": "China",
           "yale": "Jūnggwok",
-          "jyutping": "zung1gwok3"
+          "jyutping": "zung1gwok3",
+          "chinese": "中國"
         }
       ]
     },
@@ -92,42 +108,50 @@
         { 
           "english": "English", 
           "yale": "Yīngmán", 
-          "jyutping": "jing1man4" 
+          "jyutping": "jing1man4",
+          "chinese": "英文"
         },
         { 
           "english": "French", 
           "yale": "Faatmán", 
-          "jyutping": "faat3man4" 
+          "jyutping": "faat3man4",
+          "chinese": "法文"
         },
         { 
           "english": "German", 
           "yale": "Dākmán", 
-          "jyutping": "dak1man4" 
+          "jyutping": "dak1man4",
+          "chinese": "德文"
         },
         { 
           "english": "Italian", 
           "yale": "Yidaaihleihmán", 
-          "jyutping": "ji3daai6lei6man4" 
+          "jyutping": "ji3daai6lei6man4",
+          "chinese": "意大利文"
         },
         { 
           "english": "Japanese", 
           "yale": "Yahtmán", 
-          "jyutping": "jat6man4" 
+          "jyutping": "jat6man4",
+          "chinese": "日文"
         },
         { 
           "english": "Korean", 
           "yale": "Hòhnmán", 
-          "jyutping": "hon4man4" 
+          "jyutping": "hon4man4",
+          "chinese": "韓文"
         },
         {
           "english": "Cantonese",
           "yale": "Gwóngdūngwá",
-          "jyutping": "gwong2dung1waa2"
+          "jyutping": "gwong2dung1waa2",
+          "chinese": "廣東話"
         },
         {
           "english": "Standard Mandarin",
           "yale": "Póutūngwá",
-          "jyutping": "pou2tung1waa2"
+          "jyutping": "pou2tung1waa2",
+          "chinese": "普通話"
         }
       ]
     },
@@ -149,77 +173,92 @@
         {
           "english": "How are you?",
           "yale": "Néih hóu",
-          "jyutping": "nei5 hou2"
+          "jyutping": "nei5 hou2",
+          "chinese": "你好"
         },
         {
           "english": "I am",
           "yale": "Ngóh haih",
-          "jyutping": "ngo5 hai6"
+          "jyutping": "ngo5 hai6",
+          "chinese": "我是"
         },
         {
           "english": "Where are you from",
           "yale": "Néih haih bīndouh yàhn a",
-          "jyutping": "nei5 hai6 bin1 dou6 jan4 aa3"
+          "jyutping": "nei5 hai6 bin1 dou6 jan4 aa3",
+          "chinese": "你係邊度人啊"
         },
         {
           "english": "My name is",
           "yale": "Ngóh giujouh",
-          "jyutping": "ngo5 giu3 zou6"
+          "jyutping": "ngo5 giu3 zou6",
+          "chinese": "我叫做"
         },
         {
           "english": "What is your name",
           "yale": "Néih giu mátyéh méng a",
-          "jyutping": "nei5 giu3 mat1 je5 meng2 aa2"
+          "jyutping": "nei5 giu3 mat1 je5 meng2 aa2",
+          "chinese": "你叫乜嘢名啊"
         },
         {
           "english": "So, what about you?",
           "yale": "Gám néih nē",
-          "jyutping": "gam2 nei5 ne1"
+          "jyutping": "gam2 nei5 ne1",
+          "chinese": "咁你呢"
         },
         {
           "english": "Are you British",
           "yale": "Néih haih-mh-haih Yīnggwok yàhn a",
-          "jyutping": "nei5 hai6 m4 hai6 jing1 gwok3 jan4 aa3"
+          "jyutping": "nei5 hai6 m4 hai6 jing1 gwok3 jan4 aa3",
+          "chinese": "你係唔係英國人啊"
         },
         {
           "english": "No, I’m not",
           "yale": "Mhaih",
-          "jyutping": "m4 hai6"
+          "jyutping": "m4 hai6",
+          "chinese": "唔係"
         },
         {
           "english": "I can speak",
           "yale": "Ngóh sīk góng",
-          "jyutping": "ngo5 sik1 gong2"
+          "jyutping": "ngo5 sik1 gong2",
+          "chinese": "我識講"
         },
         {
           "english": "English and German",
           "yale": "Yīngmán tùhng Dākmán",
-          "jyutping": "jing1 man4 tung4 dak1 man4"
+          "jyutping": "jing1 man4 tung4 dak1 man4",
+          "chinese": "英文同德文"
         },
         {
           "english": "a little French",
           "yale": "síusíu Faatmán",
-          "jyutping": "siu2 siu2 faat3 man4"
+          "jyutping": "siu2 siu2 faat3 man4",
+          "chinese": "少少法文"
         },
         {
           "english": "Let me introduce you",
           "yale": "Dáng ngóh lèih gaaisiuh",
-          "jyutping": "dang2 ngo5 lei4 gaai3 siu6"
+          "jyutping": "dang2 ngo5 lei4 gaai3 siu6",
+          "chinese": "等我嚟介紹"
         },
         {
           "english": "This is Grace",
           "yale": "Nī go haih Grace",
-          "jyutping": "ni1 go3 hai6 Grace"
+          "jyutping": "ni1 go3 hai6 Grace",
+          "chinese": "呢個係Grace"
         },
         {
           "english": "but",
           "yale": "bātgwo",
-          "jyutping": "bat1 gwo3"
+          "jyutping": "bat1 gwo3",
+          "chinese": "不過"
         },
         {
           "english": "Grace, may I know what your surname is?",
           "yale": "chéhng mahn Grace néih gwai sing a?",
-          "jyutping": "cing2 man6 Grace nei5 gwai3 sing3 aa3?"
+          "jyutping": "cing2 man6 Grace nei5 gwai3 sing3 aa3?",
+          "chinese": "請 問 Grace 你 貴 姓 啊 ?"
         }
       ]
     },
@@ -229,67 +268,80 @@
         {
           "english": "fruit",
           "yale": "sāanggwó",
-          "jyutping": "saang1gwo2"
+          "jyutping": "saang1gwo2",
+          "chinese": "水果"
         },
         {
           "english": "mango",
           "yale": "mōnggwó",
-          "jyutping": "mong1gwo2"
+          "jyutping": "mong1gwo2",
+          "chinese": "芒果"
         },
         {
           "english": "orange",
           "yale": "cháang",
-          "jyutping": "caang2"
+          "jyutping": "caang2",
+          "chinese": "橙"
         },
         {
           "english": "apple",
           "yale": "pìhnggwó",
-          "jyutping": "ping4gwo2"
+          "jyutping": "ping4gwo2",
+          "chinese": "蘋果"
         },
         {
           "english": "banana",
           "yale": "hēungjīu",
-          "jyutping": "hoeng1ziu1"
+          "jyutping": "hoeng1ziu1",
+          "chinese": "香蕉"
         },
         {
           "english": "grapes (short)",
           "yale": "tàihjí",
-          "jyutping": "tai4zi2"
+          "jyutping": "tai4zi2",
+          "chinese": "提子"
         },
         {
           "english": "plum",
           "yale": "boulām",
-          "jyutping": "bou1lam1"
+          "jyutping": "bou1lam1",
+          "chinese": "布冧"
         },
         {
           "english": "pear",
           "yale": "léi",
-          "jyutping": "lei2"
+          "jyutping": "lei2",
+          "chinese": "梨"
         },
         {
           "english": "watermelon",
           "yale": "sāigwā",
-          "jyutping": "sai1gwaa1"
+          "jyutping": "sai1gwaa1",
+          "chinese": "西瓜"
         },
         {
           "english": "papaya",
           "yale": "muhkgwā",
-          "jyutping": "muk6gwaa1"
+          "jyutping": "muk6gwaa1",
+          "chinese": "木瓜"
         },
         {
           "english": "pineapple",
           "yale": "bōlòh",
-          "jyutping": "bo1lo4"
+          "jyutping": "bo1lo4",
+          "chinese": "菠蘿"
         },
         {
           "english": "lychee",
           "yale": "laihjī",
-          "jyutping": "lai6zi1"
+          "jyutping": "lai6zi1",
+          "chinese": "荔枝"
         },
         {
           "english": "kiwi",
           "yale": "kèihyihgwó",
-          "jyutping": "kei4ji6gwo2"
+          "jyutping": "kei4ji6gwo2",
+          "chinese": "奇異果"
         }
       ]
     },
@@ -299,22 +351,26 @@
         {
           "english": "cherry",
           "yale": "yīngtòuh",
-          "jyutping": "jing1tou4"
+          "jyutping": "jing1tou4",
+          "chinese": "櫻桃"
         },
         {
           "english": "grapes (long)",
           "yale": "pòuhtàihjí",
-          "jyutping": "pou4tai4zi2"
+          "jyutping": "pou4tai4zi2",
+          "chinese": "葡萄提子"
         },
         {
           "english": "lemon",
           "yale": "nìhngmūng",
-          "jyutping": "ning4mung1"
+          "jyutping": "ning4mung1",
+          "chinese": "檸檬"
         },
         {
           "english": "strawberry (中國)",
           "yale": "chóumùih",
-          "jyutping": "cou2mui4"
+          "jyutping": "cou2mui4",
+          "chinese": "草莓"
         },
         {
           "english": "strawberry (香港)",
@@ -325,42 +381,50 @@
         {
           "english": "tomato",
           "yale": "fāanké",
-          "jyutping": "faan1ke2"
+          "jyutping": "faan1ke2",
+          "chinese": "番茄"
         },
         {
           "english": "lettuce",
           "yale": "sāangchoi",
-          "jyutping": "saang1coi3"
+          "jyutping": "saang1coi3",
+          "chinese": "生菜"
         },
         {
           "english": "carrot",
           "yale": "hùhnglòhbaahk",
-          "jyutping": "hung4lo4baak6"
+          "jyutping": "hung4lo4baak6",
+          "chinese": "紅蘿蔔"
         },
         {
           "english": "corn",
           "yale": "sūkmáih",
-          "jyutping": "suk1mai5"
+          "jyutping": "suk1mai5",
+          "chinese": "玉米"
         },
         {
           "english": "green beans",
           "yale": "chēngdáu",
-          "jyutping": "ceng1dau2"
+          "jyutping": "ceng1dau2",
+          "chinese": "青豆"
         },
         {
           "english": "snow peas",
           "yale": "syuhtdáu",
-          "jyutping": "syut3dau2"
+          "jyutping": "syut3dau2",
+          "chinese": "雪豆"
         },
         {
           "english": "potato",
           "yale": "syùhjái",
-          "jyutping": "syu4zai2"
+          "jyutping": "syu4zai2",
+          "chinese": "薯仔"
         },
         {
           "english": "onion",
           "yale": "yèuhngchūng",
-          "jyutping": "joeng4cung1"
+          "jyutping": "joeng4cung1",
+          "chinese": "洋蔥"
         }
       ]
     },
@@ -370,82 +434,98 @@
         {
           "english": "meat",
           "yale": "yuhk",
-          "jyutping": "juk6"
+          "jyutping": "juk6",
+          "chinese": "肉"
         },
         {
           "english": "fish",
           "yale": "yú",
-          "jyutping": "jyu2"
+          "jyutping": "jyu2",
+          "chinese": "魚"
         },
         {
           "english": "coffee",
           "yale": "gafē",
-          "jyutping": "gaa3fei1"
+          "jyutping": "gaa3fei1",
+          "chinese": "咖啡"
         },
         {
           "english": "tea",
           "yale": "chàh",
-          "jyutping": "caa4"
+          "jyutping": "caa4",
+          "chinese": "茶"
         },
         {
           "english": "milk",
-          "yale": "ngàuh náaih",
-          "jyutping": "ngau4 naai5"
+          "yale": "ngàuhnáaih",
+          "jyutping": "ngau4naai5",
+          "chinese": "牛奶"
         },
         {
           "english": "salad",
           "yale": "sāléut",
-          "jyutping": "saa1 leut6"
+          "jyutping": "saa1leut2",
+          "chinese": "沙律"
         },
         {
           "english": "pie",
           "yale": "pāi",
-          "jyutping": "paai1"
+          "jyutping": "paai1",
+          "chinese": "派"
         },
         {
           "english": "cake",
-          "yale": "Daahngōu",
-          "jyutping": "daan6 gou1"
+          "yale": "daahngōu",
+          "jyutping": "daan6gou1",
+          "chinese": "蛋糕"
         },
         {
           "english": "cracker",
           "yale": "béng",
-          "jyutping": "bing2"
+          "jyutping": "bing2",
+          "chinese": "餅"
         },
         {
           "english": "bread",
-          "yale": "Mihn bāau",
-          "jyutping": "min6 baau1"
+          "yale": "mihnbāau",
+          "jyutping": "min6baau1",
+          "chinese": "麵包"
         },
         {
           "english": "chicken",
           "yale": "gāi",
-          "jyutping": "gai1"
+          "jyutping": "gai1",
+          "chinese": "雞"
         },
         {
           "english": "plate",
           "yale": "díp",
-          "jyutping": "dip6"
+          "jyutping": "dip6",
+          "chinese": "碟"
         },
         {
           "english": "cup",
           "yale": "būi",
-          "jyutping": "bui1"
+          "jyutping": "bui1",
+          "chinese": "杯"
         },
         {
           "english": "knife",
-          "yale": "Dōu",
-          "jyutping": "dou1"
+          "yale": "dōu",
+          "jyutping": "dou1",
+          "chinese": "刀"
         },
         {
           "english": "fork",
           "yale": "chā",
-          "jyutping": "caa1"
+          "jyutping": "caa1",
+          "chinese": "叉"
         },
         {
           "english": "spoon",
-          "yale": "chīhgāng",
-          "jyutping": "ci1 gang1"
+          "yale": "chìhgāng",
+          "jyutping": "ci4gang1",
+          "chinese": "匙羹"
         }
       ]
     },
@@ -455,97 +535,116 @@
         {
           "english": "1",
           "yale": "yāt",
-          "jyutping": "jat1"
+          "jyutping": "jat1",
+          "chinese": "一"
         },
         {
           "english": "2",
           "yale": "yih",
-          "jyutping": "ji6"
+          "jyutping": "ji6",
+          "chinese": "二"
         },
         {
           "english": "3",
           "yale": "sāam",
-          "jyutping": "saam1"
+          "jyutping": "saam1",
+          "chinese": "三"
         },
         {
           "english": "4",
           "yale": "sei",
-          "jyutping": "sei3"
+          "jyutping": "sei3",
+          "chinese": "四"
         },
         {
           "english": "5",
           "yale": "ńgh",
-          "jyutping": "ng5"
+          "jyutping": "ng5",
+          "chinese": "五"
         },
         {
           "english": "6",
           "yale": "luhk",
-          "jyutping": "luk6"
+          "jyutping": "luk6",
+          "chinese": "六"
         },
         {
           "english": "7",
           "yale": "chāt",
-          "jyutping": "cat1"
+          "jyutping": "cat1",
+          "chinese": "七"
         },
         {
           "english": "8",
           "yale": "baat",
-          "jyutping": "baat3"
+          "jyutping": "baat3",
+          "chinese": "八"
         },
         {
           "english": "9",
           "yale": "gáu",
-          "jyutping": "gau2"
+          "jyutping": "gau2",
+          "chinese": "九"
         },
         {
           "english": "10",
           "yale": "sahp",
-          "jyutping": "sap6"
+          "jyutping": "sap6",
+          "chinese": "十"
         },
         {
           "english": "20",
           "yale": "yih-sahp",
-          "jyutping": "ji6 sap6"
+          "jyutping": "ji6 sap6",
+          "chinese": "二十"
         },
         {
           "english": "30",
           "yale": "sāam-sahp",
-          "jyutping": "saam1 sap6"
+          "jyutping": "saam1 sap6",
+          "chinese": "三十"
         },
         {
           "english": "40",
           "yale": "sei-sahp",
-          "jyutping": "sei3 sap6"
+          "jyutping": "sei3 sap6",
+          "chinese": "四十"
         },
         {
           "english": "50",
           "yale": "ńgh-sahp",
-          "jyutping": "ng5 sap6"
+          "jyutping": "ng5 sap6",
+          "chinese": "五十"
         },
         {
           "english": "60",
           "yale": "luhk-sahp",
-          "jyutping": "luk6 sap6"
+          "jyutping": "luk6 sap6",
+          "chinese": "六十"
         },
         {
           "english": "70",
           "yale": "chāt-sahp",
-          "jyutping": "cat1 sap6"
+          "jyutping": "cat1 sap6",
+          "chinese": "七十"
         },
         {
           "english": "80",
           "yale": "baat-sahp",
-          "jyutping": "baat3 sap6"
+          "jyutping": "baat3 sap6",
+          "chinese": "八十"
         },
         {
           "english": "90",
           "yale": "gáu-sahp",
-          "jyutping": "gau2 sap6"
+          "jyutping": "gau2 sap6",
+          "chinese": "九十"
         },
         {
           "english": "100",
           "yale": "yāt-baak",
-          "jyutping": "jat1 baak3"
+          "jyutping": "jat1 baak3",
+          "chinese": "一百"
         }
       ]
     },
@@ -555,92 +654,110 @@
         {
           "english": "to watch a movie (formal)",
           "yale": "tái-dihnyíng",
-          "jyutping": "tai2 din6jing2"
+          "jyutping": "tai2 din6jing2",
+          "chinese": "睇電影"
         },
         {
           "english": "to watch a movie (casual)",
           "yale": "tái-hei",
-          "jyutping": "tai2 hei3"
+          "jyutping": "tai2 hei3",
+          "chinese": "睇戲"
         },
         {
           "english": "to watch television",
           "yale": "tái-dihnsih",
-          "jyutping": "tai2 din6si6"
+          "jyutping": "tai2 din6si6",
+          "chinese": "睇電視"
         },
         {
           "english": "to go traveling",
           "yale": "heui-léuihhàhng",
-          "jyutping": "heoi3 leoi5hang4"
+          "jyutping": "heoi3 leoi5hang4",
+          "chinese": "去旅行"
         },
         {
           "english": "to take pictures",
           "yale": "yíng-séung",
-          "jyutping": "jing2 soeng2"
+          "jyutping": "jing2 soeng2",
+          "chinese": "影相"
         },
         {
           "english": "to listen to music",
           "yale": "tēng-yāmngohk",
-          "jyutping": "teng1 jam1ngok6"
+          "jyutping": "teng1 jam1ngok6",
+          "chinese": "聽音樂"
         },
         {
           "english": "to listen to the radio",
           "yale": "tēng-sāuyāmgēi",
-          "jyutping": "teng1 sau1jam1gei1"
+          "jyutping": "teng1 sau1jam1gei1",
+          "chinese": "聽收音機"
         },
         {
           "english": "to play tennis",
           "yale": "dá-móhngkàuh",
-          "jyutping": "daa2 mong5kau4"
+          "jyutping": "daa2 mong5kau4",
+          "chinese": "打網球"
         },
         {
           "english": "to play basketball",
           "yale": "dá-làahmkàuh",
-          "jyutping": "daa2 laam4kau4"
+          "jyutping": "daa2 laam4kau4",
+          "chinese": "打籃球"
         },
         {
           "english": "to play soccer",
           "yale": "tek-jūkkàuh",
-          "jyutping": "tek3 zuk1kau4"
+          "jyutping": "tek3 zuk1kau4",
+          "chinese": "踢足球"
         },
         {
           "english": "to ride a bicycle",
           "yale": "cháai-dāanchē",
-          "jyutping": "caai2 daan1ce1"
+          "jyutping": "caai2 daan1ce1",
+          "chinese": "踩單車"
         },
         {
           "english": "to swim",
           "yale": "yàuh-séui",
-          "jyutping": "jau4 seoi2"
+          "jyutping": "jau4 seoi2",
+          "chinese": "游泳"
         },
         {
           "english": "to run",
           "yale": "páau-bouh",
-          "jyutping": "paau2 bou6"
+          "jyutping": "paau2 bou6",
+          "chinese": "跑步"
         },
         {
           "english": "to sing",
           "yale": "cheung-gō",
-          "jyutping": "coeng3 go1"
+          "jyutping": "coeng3 go1",
+          "chinese": "唱歌"
         },
         {
           "english": "to read",
           "yale": "tái-syū",
-          "jyutping": "tai2 syu1"
+          "jyutping": "tai2 syu1",
+          "chinese": "睇書"
         },
         {
           "english": "to read the newspaper",
           "yale": "tái-boují",
-          "jyutping": "tai2 bou3zi2"
+          "jyutping": "tai2 bou3zi2",
+          "chinese": "睇報紙"
         },
         {
           "english": "to go window-shopping",
           "yale": "hàahng-gāai",
-          "jyutping": "haang4 gaai1"
+          "jyutping": "haang4 gaai1",
+          "chinese": "行街"
         },
         {
           "english": "to play electronic games",
           "yale": "wáan-yàuhheigēi",
-          "jyutping": "waan2 jau4hei3gei1"
+          "jyutping": "waan2 jau4hei3gei1",
+          "chinese": "玩遊戲機"
         }
       ]
     }

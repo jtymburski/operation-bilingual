@@ -529,7 +529,7 @@
     db.groups.forEach((g) => {
       const label = document.createElement('label');
       label.className = 'chip';
-      label.innerHTML = `<input type="checkbox" value="${g.name}" checked> ${g.name} (${g.items.length})`;
+      label.innerHTML = `<input type="checkbox" value="${g.name}"> ${g.name} (${g.items.length})`;
       container.appendChild(label);
     });
   }

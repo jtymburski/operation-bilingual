@@ -534,7 +534,7 @@
       "items": [
         {
           "english": "steak",
-          "yale": "ngàuhpáa",
+          "yale": "ngàuhpáai",
           "jyutping": "ngau4paa2",
           "chinese": "牛扒"
         },
@@ -552,8 +552,8 @@
         },
         {
           "english": "sandwich",
-          "yale": "sāammánjih",
-          "jyutping": "saam1man2zi6",
+          "yale": "sāammàhnjih",
+          "jyutping": "saam1man4zi6",
           "chinese": "三文治"
         },
         {
@@ -564,7 +564,7 @@
         },
         {
           "english": "salt",
-          "yale": "yìm",
+          "yale": "yìhm",
           "jyutping": "jim4",
           "chinese": "鹽"
         },
@@ -582,14 +582,14 @@
         },
         {
           "english": "cereal",
-          "yale": "mahkgpín",
-          "jyutping": "mak6pin2",
-          "chinese": "麥片"
+          "yale": "gūkgpín",
+          "jyutping": "guk1pin2",
+          "chinese": "穀片"
         },
         {
           "english": "ham",
-          "yale": "fóteui",
-          "jyutping": "fo2teui3",
+          "yale": "fótéui",
+          "jyutping": "fo2teui2",
           "chinese": "火腿"
         },
         {
@@ -600,15 +600,15 @@
         },
         {
           "english": "ice cream",
-          "yale": "syutgō",
-          "jyutping": "syut3go1",
+          "yale": "syutgōu",
+          "jyutping": "syut3gou1",
           "chinese": "雪糕"
         },
         {
-          "english": "candy",
-          "yale": "tòhnggwó",
-          "jyutping": "tong4gwo2",
-          "chinese": "糖果"
+          "english": "candy"
+          "yale": "tóng",
+          "jyutping": "tong2",
+          "chinese": "糖"
         },
         {
           "english": "nuts",
@@ -624,7 +624,7 @@
         },
         {
           "english": "butter",
-          "yale": "ngàuhyàu",
+          "yale": "ngàuhyàuh",
           "jyutping": "ngau4jau4",
           "chinese": "牛油"
         },

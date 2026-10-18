@@ -530,6 +530,113 @@
       ]
     },
     {
+      "name": "Food p6",
+      "items": [
+        {
+          "english": "steak",
+          "yale": "ngàuhpáa",
+          "jyutping": "ngau4paa2",
+          "chinese": "牛扒"
+        },
+        {
+          "english": "hot dog",
+          "yale": "yihtgáu",
+          "jyutping": "jit6gau2",
+          "chinese": "熱狗"
+        },
+        {
+          "english": "hamburger",
+          "yale": "honbóubāau",
+          "jyutping": "hon3bou2baau1",
+          "chinese": "漢堡包"
+        },
+        {
+          "english": "sandwich",
+          "yale": "sāammánjih",
+          "jyutping": "saam1man2zi6",
+          "chinese": "三文治"
+        },
+        {
+          "english": "sausage",
+          "yale": "hēungchéung",
+          "jyutping": "hoeng1coeng2",
+          "chinese": "香腸"
+        },
+        {
+          "english": "salt",
+          "yale": "yìm",
+          "jyutping": "jim4",
+          "chinese": "鹽"
+        },
+        {
+          "english": "pepper",
+          "yale": "wùhjīufán",
+          "jyutping": "wu4ziu1fan2",
+          "chinese": "胡椒粉"
+        },
+        {
+          "english": "egg",
+          "yale": "dáan",
+          "jyutping": "daan2",
+          "chinese": "蛋"
+        },
+        {
+          "english": "cereal",
+          "yale": "mahkgpín",
+          "jyutping": "mak6pin2",
+          "chinese": "麥片"
+        },
+        {
+          "english": "ham",
+          "yale": "fóteui",
+          "jyutping": "fo2teui3",
+          "chinese": "火腿"
+        },
+        {
+          "english": "sugar",
+          "yale": "tòhng",
+          "jyutping": "tong4",
+          "chinese": "糖"
+        },
+        {
+          "english": "ice cream",
+          "yale": "syutgō",
+          "jyutping": "syut3go1",
+          "chinese": "雪糕"
+        },
+        {
+          "english": "candy",
+          "yale": "tòhnggwó",
+          "jyutping": "tong4gwo2",
+          "chinese": "糖果"
+        },
+        {
+          "english": "nuts",
+          "yale": "gīngwó",
+          "jyutping": "gin1gwo2",
+          "chinese": "堅果"
+        },
+        {
+          "english": "ice",
+          "yale": "bīng",
+          "jyutping": "bing1",
+          "chinese": "冰"
+        },
+        {
+          "english": "butter",
+          "yale": "ngàuhyàu",
+          "jyutping": "ngau4jau4",
+          "chinese": "牛油"
+        },
+        {
+          "english": "lemonade",
+          "yale": "nìngmūngjāp",
+          "jyutping": "ning4mung1zap1",
+          "chinese": "檸檬汁"
+        }
+      ]
+    },
+    {
       "name": "Numbers",
       "items": [
         {

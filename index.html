@@ -563,6 +563,16 @@
     return labels[direction] || direction;
   }
 
+  // Fisher–Yates shuffle: uniformly randomizes a copied array without changing the source.
+  function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
   function chooseDirection() {
     const mode = document.getElementById('quiz-mode').value;
     if (mode === 'en-to-yale' || mode === 'en-to-jyutping') return mode;
@@ -653,7 +663,7 @@
 
     if (executionMode === 'round') {
       // Shuffle a fresh copy so every selected item is asked exactly once.
-      roundQueue = [...quizPool].sort(() => Math.random() - 0.5);
+      roundQueue = shuffleArray(quizPool);
       document.getElementById('start-btn').innerText = 'Restart Quiz';
     } else {
       roundQueue = [];

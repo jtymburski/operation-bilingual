@@ -869,7 +869,7 @@
       ]
     },
     {
-      "name": "Daily Routine",
+      "name": "Routine",
       "items": [
         {
           "english": "to get up",
@@ -912,6 +912,30 @@
           "yale": "fan-gaau",
           "jyutping": "fan3gaau2",
           "chinese": "瞓覺"
+        },
+        {
+          "english": "once a day",
+          "yale": "yāt yaht yāt chi",
+          "jyutping": "jat1jat6 jat1ci3",
+          "chinese": "一日一次"
+        },
+        {
+          "english": "twice a week",
+          "yale": "yāt go láihbaai yāt chi",
+          "jyutping": "jat1go3 lai5baai3 loeng2ci3",
+          "chinese": "一個禮拜二次"
+        },
+        {
+          "english": "three times a month",
+          "yale": "yāt go yuht sāam chi",
+          "jyutping": "jat1go3 jyut6 saam1ci3",
+          "chinese": "一個月三次"
+        },
+        {
+          "english": "four times a year",
+          "yale": "yāt nìhn sei chi",
+          "jyutping": "jat1 nin4 sei3ci3",
+          "chinese": "一年四次"
         }
       ]
     },

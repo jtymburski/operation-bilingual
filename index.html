@@ -188,6 +188,7 @@
     }
 
     .feedback.correct { background: #dcfce7; color: var(--success); display: block; }
+    .feedback.close-match { background: #fef3c7; color: #92400e; display: block; }
     .feedback.incorrect { background: #fee2e2; color: var(--error); display: block; }
 
     .status-banner {
@@ -356,6 +357,7 @@
         <label for="execution-mode">Execution Mode:</label>
         <select id="execution-mode" style="width: 100%; margin-bottom: 16px;">
           <option value="repeat">Random Repeat — immediate feedback</option>
+          <option value="repeat-space-insensitive">Random Repeat — immediate feedback, space insensitive</option>
           <option value="round">Full Round — each word once, score at end</option>
         </select>
 
@@ -553,6 +555,20 @@
       .replace(/\p{P}/gu, '');
   }
 
+  // In this mode, hyphens are treated as optional punctuation (green),
+  // while spaces remain significant for the exact-vs-almost distinction.
+  function normalizeAnswerWithSeparators(value) {
+    return String(value ?? '').trim().toLocaleLowerCase().replace(/-/gu, '');
+  }
+
+  function normalizeSpacingAndHyphens(value) {
+    return normalizeAnswerWithSeparators(value).replace(/\s+/gu, '');
+  }
+
+  function isRepeatMode() {
+    return executionMode === 'repeat' || executionMode === 'repeat-space-insensitive';
+  }
+
   function getDirectionLabel(direction) {
     const labels = {
       'en-to-yale': 'English ➔ Yale',
@@ -646,7 +662,7 @@
       clearTimeout(nextQuestionTimer);
       nextQuestionTimer = null;
     }
-    document.getElementById('skip-btn').style.display = executionMode === 'repeat' ? 'block' : 'none';
+    document.getElementById('skip-btn').style.display = isRepeatMode() ? 'block' : 'none';
   }
 
   function startQuiz() {
@@ -712,7 +728,7 @@
     document.getElementById('prompt-direction').innerText = prompt.title;
     document.getElementById('prompt-text').innerText = prompt.text;
     document.getElementById('submit-answer-btn').innerText = executionMode === 'round' ? 'Submit Answer' : 'Check Answer';
-    document.getElementById('skip-btn').style.display = executionMode === 'repeat' ? 'block' : 'none';
+    document.getElementById('skip-btn').style.display = isRepeatMode() ? 'block' : 'none';
     document.getElementById('user-input').setAttribute('aria-label', prompt.answerLabel);
     document.querySelector('label[for="user-input"]').innerText = prompt.answerLabel;
     document.getElementById('accent-buttons').style.display = prompt.accents ? 'flex' : 'none';
@@ -758,7 +774,12 @@
       }
     }
     const normalizedUserInput = normalizeAnswer(userInput);
-    const isCorrect = acceptedTargets.some(answer => normalizeAnswer(answer) === normalizedUserInput);
+    const isSpaceInsensitiveMode = executionMode === 'repeat-space-insensitive';
+    const isCorrect = acceptedTargets.some(answer => isSpaceInsensitiveMode
+      ? normalizeAnswerWithSeparators(answer) === normalizeAnswerWithSeparators(userInput)
+      : normalizeAnswer(answer) === normalizedUserInput);
+    const isSpaceInsensitiveMatch = isSpaceInsensitiveMode && !isCorrect &&
+      acceptedTargets.some(answer => normalizeSpacingAndHyphens(answer) === normalizeSpacingAndHyphens(userInput));
     const input = document.getElementById('user-input');
 
     if (executionMode === 'round') {
@@ -787,6 +808,13 @@
         nextQuestionTimer = null;
         nextQuestion();
       }, 1200);
+    } else if (isSpaceInsensitiveMatch) {
+      feedback.className = 'feedback close-match';
+      feedback.innerText = `Almost! Spacing differs. Expected: "${target}"`;
+      nextQuestionTimer = setTimeout(() => {
+        nextQuestionTimer = null;
+        nextQuestion();
+      }, 1600);
     } else {
       feedback.className = 'feedback incorrect';
       feedback.innerText = `✗ Incorrect. Target: "${target}"`;
@@ -796,7 +824,7 @@
   }
 
   function skipQuestion() {
-    if (executionMode !== 'repeat' || !currentItem) return;
+    if (!isRepeatMode() || !currentItem) return;
     if (nextQuestionTimer) {
       clearTimeout(nextQuestionTimer);
       nextQuestionTimer = null;

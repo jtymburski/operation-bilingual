@@ -555,14 +555,10 @@
       .replace(/\p{P}/gu, '');
   }
 
-  // In this mode, hyphens are treated as optional punctuation (green),
-  // while spaces remain significant for the exact-vs-almost distinction.
-  function normalizeAnswerWithSeparators(value) {
-    return String(value ?? '').trim().toLocaleLowerCase().replace(/-/gu, '');
-  }
-
-  function normalizeSpacingAndHyphens(value) {
-    return normalizeAnswerWithSeparators(value).replace(/\s+/gu, '');
+  // The new mode reuses the existing punctuation-insensitive normalization.
+  // Its only additional rule is to ignore spaces when checking for an almost-match.
+  function normalizeAnswerIgnoringSpaces(value) {
+    return normalizeAnswer(value).replace(/\s+/gu, '');
   }
 
   function isRepeatMode() {
@@ -775,11 +771,11 @@
     }
     const normalizedUserInput = normalizeAnswer(userInput);
     const isSpaceInsensitiveMode = executionMode === 'repeat-space-insensitive';
-    const isCorrect = acceptedTargets.some(answer => isSpaceInsensitiveMode
-      ? normalizeAnswerWithSeparators(answer) === normalizeAnswerWithSeparators(userInput)
-      : normalizeAnswer(answer) === normalizedUserInput);
+    // Both modes use the original punctuation-insensitive comparison for green.
+    const isCorrect = acceptedTargets.some(answer => normalizeAnswer(answer) === normalizedUserInput);
+    // Only the new mode adds a second comparison that also ignores spaces (yellow).
     const isSpaceInsensitiveMatch = isSpaceInsensitiveMode && !isCorrect &&
-      acceptedTargets.some(answer => normalizeSpacingAndHyphens(answer) === normalizeSpacingAndHyphens(userInput));
+      acceptedTargets.some(answer => normalizeAnswerIgnoringSpaces(answer) === normalizeAnswerIgnoringSpaces(userInput));
     const input = document.getElementById('user-input');
 
     if (executionMode === 'round') {

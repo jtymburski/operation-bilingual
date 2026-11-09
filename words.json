@@ -1051,6 +1051,53 @@
           "chinese": "玩遊戲機"
         }
       ]
+    },
+    {
+      "name": "Types of TV",
+      "items": [
+        {
+          "english": "news",
+          "yale": "sānmán",
+          "jyutping": "san1man2",
+          "chinese": "新聞"
+        },
+        {
+          "english": "weather report",
+          "yale": "tīnhei bougou",
+          "jyutping": "tin1hei3 bou3gou3",
+          "chinese": "天氣報告"
+        },
+        {
+          "english": "TV drama",
+          "yale": "dihnsihkehk",
+          "jyutping": "din6si6kek6",
+          "chinese": "電視劇"
+        },
+        {
+          "english": "movie/film",
+          "yale": "dihnyíng",
+          "jyutping": "din6jing2",
+          "chinese": "電影"
+        },
+        {
+          "english": "documentary",
+          "yale": "géiluhkpín",
+          "jyutping": "gei2luk6pin2",
+          "chinese": "紀錄片"
+        },
+        {
+          "english": "sports",
+          "yale": "táiyuhk",
+          "jyutping": "tai2juk6",
+          "chinese": "體育"
+        },
+        {
+          "english": "horse-racing",
+          "yale": "choimáh",
+          "jyutping": "coi3maa5",
+          "chinese": "賽馬"
+        }
+      ]
     }
   ]
 }

@@ -1098,6 +1098,107 @@
           "chinese": "賽馬"
         }
       ]
+    },
+    {
+      "name": "Physical Appearance",
+      "items": [
+        {
+          "english": "tall",
+          "yale": "gōu",
+          "jyutping": "gou1",
+          "chinese": "高"
+        },
+        {
+          "english": "short",
+          "yale": "ngái",
+          "jyutping": "ngai2",
+          "chinese": "矮"
+        },
+        {
+          "english": "big",
+          "yale": "gōudaaih",
+          "jyutping": "gou1daai6",
+          "chinese": "高大"
+        },
+        {
+          "english": "small",
+          "yale": "ngáisai",
+          "jyutping": "ngai2sai3",
+          "chinese": "矮細"
+        },
+        {
+          "english": "fat",
+          "yale": "fèih",
+          "jyutping": "fei4",
+          "chinese": "肥"
+        },
+        {
+          "english": "thin",
+          "yale": "sau",
+          "jyutping": "sau3",
+          "chinese": "瘦"
+        },
+        {
+          "english": "long-haired",
+          "yale": "chèuhng tàuhfaat",
+          "jyutping": "coeng4 tau4faat3",
+          "chinese": "長頭髮"
+        },
+        {
+          "english": "short-haired",
+          "yale": "dyún tàuhfaat",
+          "jyutping": "dyun2 tau4faat3",
+          "chinese": "短頭髮"
+        },
+        {
+          "english": "pretty",
+          "yale": "leng",
+          "jyutping": "leng3",
+          "chinese": "靚"
+        },
+        {
+          "english": "handsome",
+          "yale": "lengjái",
+          "jyutping": "leng3zai2",
+          "chinese": "靚仔"
+        },
+        {
+          "english": "old",
+          "yale": "lóuh",
+          "jyutping": "lou5",
+          "chinese": "老"
+        },
+        {
+          "english": "young",
+          "yale": "hauhsāang",
+          "jyutping": "hau6saang1",
+          "chinese": "後生"
+        },
+        {
+          "english": "wears glasses",
+          "yale": "daai ngáahngéng",
+          "jyutping": "daai3 ngaa5ngeng2",
+          "chinese": "戴眼鏡"
+        },
+        {
+          "english": "does not wear glasses",
+          "yale": "móuh daai ngáahngéng",
+          "jyutping": "mou5 daai3 ngaa5ngeng2",
+          "chinese": "唔戴眼鏡"
+        },
+        {
+          "english": "has a moustache/beard",
+          "yale": "yáuh wùhsōu",
+          "jyutping": "jau5 wu4sou1",
+          "chinese": "有鬚"
+        },
+        {
+          "english": "does not have a moustache/beard",
+          "yale": "móuh wùhsōu",
+          "jyutping": "mou5 wu4sou1",
+          "chinese": "冇鬚"
+        }
+      ]
     }
   ]
 }

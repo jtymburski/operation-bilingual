@@ -1235,6 +1235,59 @@
           "chinese": "瘦瘦哋"
         }
       ]
+    },
+    {
+      "name": "Kinship",
+      "items": [
+        {
+          "english": "father",
+          "yale": "bàh-bā",
+          "jyutping": "baa4 baa1",
+          "chinese": "爸爸"
+        },
+        {
+          "english": "mother",
+          "yale": "màh-mā",
+          "jyutping": "maa4 maa1",
+          "chinese": "媽媽"
+        },
+        {
+          "english": "elder brother",
+          "yale": "gòh-gō",
+          "jyutping": "go4 go1",
+          "chinese": "哥哥"
+        },
+        {
+          "english": "younger brother",
+          "yale": "dàih-dái",
+          "jyutping": "dai4 dai2",
+          "chinese": "弟弟"
+        },
+        {
+          "english": "elder sister",
+          "yale": "gājē",
+          "jyutping": "gaa1 ze1",
+          "chinese": "家姐"
+        },
+        {
+          "english": "younger sister",
+          "yale": "mùih-múi",
+          "jyutping": "mui4-mui5",
+          "chinese": "妹妹"
+        },
+        {
+          "english": "son",
+          "yale": "jái",
+          "jyutping": "zai2",
+          "chinese": "仔"
+        },
+        {
+          "english": "daughter",
+          "yale": "néui",
+          "jyutping": "neoi5",
+          "chinese": "女"
+        }
+      ]
     }
   ]
 }

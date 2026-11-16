@@ -1199,28 +1199,40 @@
           "chinese": "冇鬚"
         },
         {
-          "english": "quite fat",
-          "yale": "géi fèih",
-          "jyutping": "gei2 fei4",
-          "chinese": "幾肥"
+          "english": "very tall",
+          "yale": "hóu gōu",
+          "jyutping": "hou2 gou1",
+          "chinese": "好高"
         },
         {
-          "english": "somewhat thin",
+          "english": "quite tall",
+          "yale": "géi gōu",
+          "jyutping": "gei2 gou1",
+          "chinese": "幾高"
+        },
+        {
+          "english": "not too tall",
+          "yale": "màh-má-déi gōu",
+          "jyutping": "maa4maa2dei2 gou1",
+          "chinese": "麻麻哋高"
+        }
+        {
+          "english": "quite short",
+          "yale": "géi ngái",
+          "jyutping": "gei2 ngai2",
+          "chinese": "幾矮"
+        },
+        {
+          "english": "very short",
+          "yale": "hóu ngái",
+          "jyutping": "hou2 ngai2",
+          "chinese": "好矮"
+        },
+        {
+          "english": "somewhat (quite) thin",
           "yale": "sau-sau-déi",
           "jyutping": "sau3sau3dei2",
           "chinese": "瘦瘦哋"
-        },
-        {
-          "english": "not too old",
-          "yale": "mhaih géi lóuh",
-          "jyutping": "m4hai6 gei2 lou5",
-          "chinese": "唔係幾老"
-        },
-        {
-          "english": "not so young",
-          "yale": "màh-má-déi hauhsāang",
-          "jyutping": "maa4maa2dei2 hau6saang1",
-          "chinese": "麻麻哋後生"
         }
       ]
     }
